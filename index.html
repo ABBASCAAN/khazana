@@ -10,11 +10,9 @@
     <style>
         :root { --sky: #38bdf8; --gold: #fbbf24; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #020617; color: #f8fafc; overflow-x: hidden; min-height: 100vh; }
-        
         .aura { position: fixed; width: 800px; height: 800px; border-radius: 50%; filter: blur(140px); z-index: -1; opacity: 0.12; pointer-events: none; }
         .aura-1 { background: var(--sky); top: -20%; left: -10%; }
         .aura-2 { background: var(--gold); bottom: -20%; right: -10%; }
-
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
         .feature-card:hover { transform: translateY(-8px); border-color: var(--sky); background: rgba(56, 189, 248, 0.03); }
         .hero-gradient { background: linear-gradient(to bottom, #ffffff 30%, rgba(255,255,255,0.4) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -66,73 +64,96 @@
         </div>
     </main>
 
-    <footer class="glass border-t-0 rounded-t-[4rem] mt-20 pb-12 pt-20 px-8">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="col-span-1 md:col-span-2">
-                <div class="text-3xl font-black mb-6 italic">KHAZANA<span class="text-sky-400">.PRO</span></div>
-                <p class="text-slate-500 text-sm max-w-sm leading-relaxed mb-8">
-                    Pakistan ki youth ko digital empowerment aur financial independence dene wala pehla mukammal ecosystem. Founded and Managed by Abbas Khan.
-                </p>
-                <div class="flex space-x-6 text-xs font-bold tracking-widest text-sky-400 uppercase">
-                    <a href="#" class="hover:text-white">Facebook</a>
-                    <a href="#" class="hover:text-white">LinkedIn</a>
-                    <a href="#" class="hover:text-white">YouTube</a>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm mb-6 uppercase tracking-widest">Company</h4>
-                <ul class="text-slate-500 text-sm space-y-4">
-                    <li><a href="#" class="hover:text-sky-400">About Us</a></li>
-                    <li><a href="#" class="hover:text-sky-400">Success Stories</a></li>
-                    <li><a href="#" class="hover:text-sky-400">Partner Program</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-sm mb-6 uppercase tracking-widest">Legal</h4>
-                <ul class="text-slate-500 text-sm space-y-4">
-                    <li><a href="#" class="hover:text-sky-400">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-sky-400">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-sky-400">Refund Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-[9px] font-bold text-slate-600 tracking-[0.5em] text-center uppercase">
-            &copy; 2026 KHAZANA ENTERPRISE | DESIGNED FOR THE BRAVE
-        </div>
-    </footer>
-
     <div id="auth-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-2xl flex items-center justify-center z-50 p-6">
-        <div class="glass p-12 rounded-[4rem] w-full max-w-md border-sky-500/20">
-            <h2 class="text-4xl font-black mb-2 italic">JOIN<span class="text-sky-500">.</span></h2>
-            <p class="text-slate-500 mb-8 text-sm uppercase tracking-widest font-bold">Start Your Journey</p>
-            <input type="email" id="email" placeholder="Email" class="w-full p-5 bg-white/5 border border-white/10 rounded-2xl mb-4 focus:border-sky-500 outline-none">
-            <input type="password" id="password" placeholder="Password" class="w-full p-5 bg-white/5 border border-white/10 rounded-2xl mb-8 focus:border-sky-500 outline-none">
-            <button onclick="handleSignUp()" id="signup-btn" class="w-full bg-sky-500 py-5 rounded-2xl font-black text-sm tracking-[0.2em] hover:bg-sky-400 transition-all">CREATE ACCOUNT</button>
-            <button onclick="toggleModal()" class="w-full mt-6 text-slate-600 text-[10px] font-bold tracking-widest uppercase hover:text-white">Close</button>
+        <div class="glass p-12 rounded-[4rem] w-full max-w-md border-sky-500/20 text-center">
+            <h2 id="modal-title" class="text-4xl font-black mb-2 italic uppercase">JOIN<span class="text-sky-500">.</span></h2>
+            <p id="modal-desc" class="text-slate-500 mb-8 text-sm uppercase tracking-widest font-bold">Start Your Journey</p>
+            
+            <input type="email" id="email" placeholder="Email" class="w-full p-5 bg-white/5 border border-white/10 rounded-2xl mb-4 focus:border-sky-500 outline-none text-white">
+            <input type="password" id="password" placeholder="Password" class="w-full p-5 bg-white/5 border border-white/10 rounded-2xl mb-8 focus:border-sky-500 outline-none text-white">
+            
+            <button onclick="handleAuth()" id="auth-btn" class="w-full bg-sky-500 py-5 rounded-2xl font-black text-sm tracking-[0.2em] hover:bg-sky-400 transition-all uppercase">
+                Create Account
+            </button>
+            
+            <p class="mt-6 text-[10px] font-bold tracking-widest text-slate-500 uppercase">
+                <span id="toggle-text">Already a member?</span> 
+                <button onclick="toggleAuthMode()" id="toggle-link" class="text-sky-400 hover:text-white ml-1">Login Here</button>
+            </p>
+
+            <button onclick="toggleModal()" class="mt-6 text-slate-600 text-[10px] font-bold tracking-widest uppercase hover:text-white">Close</button>
         </div>
     </div>
 
     <script>
-        // Safety Check for Supabase
-        let supabase;
-        try {
-            // Hum yahan apni keys foran test kar sakte hain
-            const sUrl = 'YOUR_SUPABASE_URL'; 
-            const sKey = 'YOUR_ANON_KEY';
-            if(sUrl !== 'YOUR_SUPABASE_URL') {
-                supabase = supabase.createClient(sUrl, sKey);
+        // Supabase Initialization using your details
+        const sUrl = 'https://joeraoythobkbljnxfmf.supabase.co';
+        const sKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpvZXJhb3l0aG9ia2Jsam54Zm1mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM5OTg4NjAsImV4cCI6MjAzMTU3NDg2MH0.xxxxx'; // Apni full key yahan paste karein ya Vercel env se uthaye ga.
+        
+        const _supabase = supabase.createClient(sUrl, sKey);
+
+        let isLoginMode = false;
+
+        function toggleModal() { 
+            document.getElementById('auth-modal').classList.toggle('hidden'); 
+        }
+
+        function toggleAuthMode() {
+            isLoginMode = !isLoginMode;
+            const title = document.getElementById('modal-title');
+            const desc = document.getElementById('modal-desc');
+            const btn = document.getElementById('auth-btn');
+            const toggleText = document.getElementById('toggle-text');
+            const toggleLink = document.getElementById('toggle-link');
+
+            if (isLoginMode) {
+                title.innerHTML = 'WELCOME<span class="text-sky-500">.</span>';
+                desc.innerText = 'Login to your dashboard';
+                btn.innerText = 'Login Now';
+                toggleText.innerText = "Don't have an account?";
+                toggleLink.innerText = 'Sign Up';
+            } else {
+                title.innerHTML = 'JOIN<span class="text-sky-500">.</span>';
+                desc.innerText = 'Start Your Journey';
+                btn.innerText = 'Create Account';
+                toggleText.innerText = "Already a member?";
+                toggleLink.innerText = 'Login Here';
             }
-        } catch(e) { console.log("Supabase abhi connect nahi hua."); }
+        }
 
-        function toggleModal() { document.getElementById('auth-modal').classList.toggle('hidden'); }
-
-        async function handleSignUp() {
-            if(!supabase) return alert("System update ho raha hai. Thori der baad koshish karein!");
+        async function handleAuth() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const { error } = await supabase.auth.signUp({ email, password });
-            if (error) alert(error.message);
-            else alert("Account Created!");
+            const btn = document.getElementById('auth-btn');
+
+            if(!email || !password) return alert("Jan, fields khali na chorrein!");
+
+            btn.disabled = true;
+            btn.innerText = "Processing...";
+
+            let result;
+            if (isLoginMode) {
+                // Login Logic
+                result = await _supabase.auth.signInWithPassword({ email, password });
+            } else {
+                // Signup Logic
+                result = await _supabase.auth.signUp({ email, password });
+            }
+
+            const { data, error } = result;
+
+            if (error) {
+                alert(error.message);
+                btn.disabled = false;
+                btn.innerText = isLoginMode ? "Login Now" : "Create Account";
+            } else {
+                if(!isLoginMode && data.user && data.user.identities.length === 0) {
+                    alert("Email already exists! Please login.");
+                } else {
+                    // Success: Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                }
+            }
         }
     </script>
 </body>
