@@ -3,201 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khazana.pro | Global Digital Sovereignty</title>
+    <title>Khazana.pro | Precision Digital Growth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --sky: #38bdf8; --indigo: #6366f1; --slate: #94a3b8; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
-        
-        /* Premium Background Visuals */
-        .grid-bg { 
-            position: fixed; inset: 0; 
-            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 40px 40px; z-index: -1;
-        }
-        .glow {
-            position: fixed; width: 100vw; height: 100vh;
-            background: radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.15), transparent 70%);
-            z-index: -1; pointer-events: none;
+        :root { --accent: #0ea5e9; --soft-bg: #f8fafc; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: #ffffff; color: #0f172a; 
+            overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* Enterprise Animations */
-        @keyframes reveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .reveal { animation: reveal 1s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
+        /* High-End Background Mesh */
+        .mesh-gradient {
+            position: fixed; inset: 0; z-index: -1;
+            background-color: #ffffff;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(251, 191, 36, 0.05) 0px, transparent 50%);
+        }
 
-        /* Mobile-First Refined Cards */
-        .enterprise-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.5s border-radius;
-            position: relative; overflow: hidden;
-        }
-        .enterprise-card:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-            background: rgba(255,255,255,0.04);
-        }
-        .enterprise-card::after {
-            content: ""; position: absolute; inset: 0;
-            background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 50%);
-            opacity: 0; transition: opacity 0.5s;
-        }
-        .enterprise-card:hover::after { opacity: 1; }
+        /* Subtle Floating Animation */
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .floating { animation: float 4s ease-in-out infinite; }
 
-        .hero-text {
-            background: linear-gradient(to bottom, #fff 50%, #64748b 100%);
+        /* Premium Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px -15px rgba(14, 165, 233, 0.15);
+            border-color: var(--accent);
+        }
+
+        /* Text Gradients */
+        .premium-text {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        /* Mobile Bottom Nav Fix */
+        /* Responsive Mobile Typography */
         @media (max-width: 640px) {
-            .hero-title { font-size: 3.5rem !important; line-height: 1 !important; }
-            .card-grid { grid-template-columns: 1fr !important; }
+            .hero-title { font-size: 2.75rem !important; line-height: 1.1 !important; }
+            .hero-p { font-size: 1rem !important; }
         }
     </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
-    <div class="glow"></div>
+    <div class="mesh-gradient"></div>
 
-    <nav class="flex justify-between items-center px-6 py-6 md:px-12 md:py-8 max-w-screen-2xl mx-auto sticky top-0 z-50 backdrop-blur-md">
+    <nav class="flex justify-between items-center px-6 py-6 md:px-16 max-w-7xl mx-auto sticky top-0 z-50 backdrop-blur-xl border-b border-slate-100/50">
         <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center font-black italic text-black">K</div>
-            <div class="text-xl font-bold tracking-tighter uppercase">Khazana<span class="text-sky-400">.Pro</span></div>
+            <div class="w-7 h-7 bg-sky-500 rounded-lg shadow-lg shadow-sky-200"></div>
+            <div class="text-xl font-extrabold tracking-tighter text-slate-900 uppercase">Khazana<span class="text-sky-500">.Pro</span></div>
         </div>
-        <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">
-            <a href="#" class="hover:text-white transition">Ecosystem</a>
-            <a href="#" class="hover:text-white transition">Governance</a>
-            <a href="#" class="hover:text-white transition">Intelligence</a>
+        <div class="hidden md:flex space-x-10 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+            <a href="#" class="hover:text-sky-500 transition">Solutions</a>
+            <a href="#" class="hover:text-sky-400 transition">Resources</a>
+            <a href="#" class="hover:text-sky-500 transition">Contact</a>
         </div>
-        <button onclick="toggleModal()" class="bg-white text-black px-6 py-2.5 rounded-full text-[10px] font-extrabold tracking-widest hover:bg-sky-400 transition-transform active:scale-95">
+        <button onclick="toggleModal()" class="bg-slate-900 text-white px-7 py-2.5 rounded-full text-[10px] font-bold tracking-widest hover:bg-sky-500 transition-all shadow-xl shadow-slate-200 active:scale-95">
             GET STARTED
         </button>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 pt-12 md:pt-28 pb-24">
-        <div class="reveal inline-flex items-center space-x-2 border border-sky-500/30 bg-sky-500/5 px-4 py-1.5 rounded-full mb-8">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-            </span>
-            <span class="text-[9px] font-black uppercase tracking-[0.3em] text-sky-400">Global Infrastructure Active</span>
+    <main class="max-w-6xl mx-auto px-6 pt-16 md:pt-32 pb-24 text-center">
+        <div class="inline-flex items-center space-x-2 bg-sky-50 border border-sky-100 px-4 py-1.5 rounded-full mb-8">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-sky-600">The New Standard of Excellence</span>
         </div>
 
-        <h1 class="hero-title reveal delay-1 text-5xl md:text-8xl lg:text-[110px] font-extrabold tracking-tight hero-text mb-8">
-            THE FUTURE OF <br class="hidden md:block"/> DIGITAL CAPITAL.
+        <h1 class="hero-title text-5xl md:text-8xl font-[800] tracking-tight premium-text mb-8">
+            Master the Digital <br/> Economy.
         </h1>
         
-        <p class="reveal delay-2 text-slate-400 text-lg md:text-xl max-w-3xl mb-16 font-light leading-relaxed">
-            Khazana.pro is a decentralized ecosystem engineered for high-performance individuals. We provide the infrastructure, intelligence, and elite networking required to dominate the global digital economy.
+        <p class="hero-p text-slate-500 text-lg md:text-xl max-w-3xl mb-16 mx-auto font-medium leading-relaxed">
+            Elevate your potential with a world-class ecosystem designed for creators, entrepreneurs, and visionaries. Transform your ambition into global success.
         </p>
 
-        <div class="grid card-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <div class="enterprise-card p-8 rounded-3xl">
-                <div class="text-sky-400 text-xs font-bold mb-4 tracking-widest uppercase">Intelligence</div>
-                <h3 class="text-lg font-bold mb-2 uppercase">Skill Acquisition</h3>
-                <p class="text-slate-500 text-xs leading-relaxed">Access proprietary frameworks in Generative AI, Strategic Sales, and High-Ticket Negotiation.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 text-left">
+            <div class="glass-card p-10 rounded-[2.5rem]">
+                <div class="w-12 h-12 bg-sky-100 rounded-2xl mb-6 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-slate-900">Advanced Learning</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Access premium knowledge tailored for high-impact results in the global market.</p>
             </div>
-            <div class="enterprise-card p-8 rounded-3xl">
-                <div class="text-indigo-400 text-xs font-bold mb-4 tracking-widest uppercase">Infrastructure</div>
-                <h3 class="text-lg font-bold mb-2 uppercase">Digital Assets</h3>
-                <p class="text-slate-500 text-xs leading-relaxed">Scalable business models designed for cross-border revenue and automated performance.</p>
+            <div class="glass-card p-10 rounded-[2.5rem]">
+                <div class="w-12 h-12 bg-indigo-100 rounded-2xl mb-6 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-slate-900">Strategic Growth</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Leverage proven business models to scale your vision and professional value.</p>
             </div>
-            <div class="enterprise-card p-8 rounded-3xl">
-                <div class="text-emerald-400 text-xs font-bold mb-4 tracking-widest uppercase">Analytics</div>
-                <h3 class="text-lg font-bold mb-2 uppercase">Pro Terminal</h3>
-                <p class="text-slate-500 text-xs leading-relaxed">Real-time data visualization of your growth trajectory and financial milestones.</p>
-            </div>
-            <div class="enterprise-card p-8 rounded-3xl">
-                <div class="text-amber-400 text-xs font-bold mb-4 tracking-widest uppercase">Network</div>
-                <h3 class="text-lg font-bold mb-2 uppercase">Elite Circle</h3>
-                <p class="text-slate-500 text-xs leading-relaxed">Connect with verified high-performers and industry leaders across the globe.</p>
-            </div>
-            <div class="enterprise-card p-8 rounded-3xl">
-                <div class="text-rose-400 text-xs font-bold mb-4 tracking-widest uppercase">Strategy</div>
-                <h3 class="text-lg font-bold mb-2 uppercase">Growth Roadmap</h3>
-                <p class="text-slate-500 text-xs leading-relaxed">Precision-engineered career paths tailored for maximum market impact and authority.</p>
-            </div>
-            <div class="enterprise-card p-8 rounded-3xl">
-                <div class="text-purple-400 text-xs font-bold mb-4 tracking-widest uppercase">Authority</div>
-                <h3 class="text-lg font-bold mb-2 uppercase">Market Mastery</h3>
-                <p class="text-slate-500 text-xs leading-relaxed">Position yourself as a top-tier asset in international high-value markets.</p>
-            </div>
-            <div class="enterprise-card p-8 rounded-3xl">
-                <div class="text-sky-400 text-xs font-bold mb-4 tracking-widest uppercase">Security</div>
-                <h3 class="text-lg font-bold mb-2 uppercase">Asset Protection</h3>
-                <p class="text-slate-500 text-xs leading-relaxed">Advanced systems to secure your digital intellectual property and revenue streams.</p>
-            </div>
-            <div class="enterprise-card p-8 rounded-3xl">
-                <div class="text-slate-400 text-xs font-bold mb-4 tracking-widest uppercase">Freedom</div>
-                <h3 class="text-lg font-bold mb-2 uppercase">Sovereignty</h3>
-                <p class="text-slate-500 text-xs leading-relaxed">Full control over your financial destiny and professional independence.</p>
+            <div class="glass-card p-10 rounded-[2.5rem]">
+                <div class="w-12 h-12 bg-amber-100 rounded-2xl mb-6 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-slate-900">Live Analytics</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Monitor your progress with a clean, professional terminal designed for clarity.</p>
             </div>
         </div>
     </main>
 
-    <footer class="border-t border-white/5 pt-20 pb-12 bg-[#050505]">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
-            <div>
-                <div class="text-xl font-bold tracking-tighter mb-6 uppercase">Khazana<span class="text-sky-400">.Pro</span></div>
-                <p class="text-slate-500 text-xs leading-relaxed uppercase tracking-widest">Global Digital Infrastructure for the New Economy.</p>
+    <footer class="bg-slate-50 py-20 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-xl font-black tracking-tighter uppercase text-slate-900">Khazana<span class="text-sky-500">.Pro</span></div>
+            <div class="flex space-x-12 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="#" class="hover:text-sky-500 transition">Privacy</a>
+                <a href="#" class="hover:text-sky-500 transition">Terms</a>
+                <a href="#" class="hover:text-sky-500 transition">Security</a>
             </div>
-            <div class="grid grid-cols-2 gap-8 col-span-2">
-                <div>
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-white mb-6">Network</h4>
-                    <ul class="text-slate-500 text-[10px] uppercase font-bold space-y-4 tracking-widest">
-                        <li><a href="#" class="hover:text-sky-400 transition">Intelligence Vault</a></li>
-                        <li><a href="#" class="hover:text-sky-400 transition">Global Access</a></li>
-                        <li><a href="#" class="hover:text-sky-400 transition">Terminal</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-white mb-6">Protocol</h4>
-                    <ul class="text-slate-500 text-[10px] uppercase font-bold space-y-4 tracking-widest">
-                        <li><a href="#" class="hover:text-sky-400 transition">Privacy</a></li>
-                        <li><a href="#" class="hover:text-sky-400 transition">Compliance</a></li>
-                        <li><a href="#" class="hover:text-sky-400 transition">Security</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="text-center text-[8px] font-bold text-slate-700 uppercase tracking-[0.5em]">
-            © 2026 KHAZANA PROTOCOL. ALL SYSTEMS OPERATIONAL.
+            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2026 Khazana Pro Ecosystem</div>
         </div>
     </footer>
 
-    <div id="auth-modal" class="hidden fixed inset-0 bg-black/95 backdrop-blur-3xl flex items-center justify-center z-50 p-4">
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 md:p-12 rounded-[2rem] w-full max-w-sm text-center">
-            <h2 id="modal-title" class="text-3xl font-black mb-2 tracking-tighter uppercase">Establish Connection</h2>
-            <p id="modal-desc" class="text-slate-500 mb-8 text-[9px] uppercase tracking-[0.3em] font-bold">Secure Authentication Protocol</p>
+    <div id="auth-modal" class="hidden fixed inset-0 bg-white/80 backdrop-blur-2xl flex items-center justify-center z-50 p-4">
+        <div class="bg-white shadow-2xl p-8 md:p-12 rounded-[2.5rem] w-full max-w-sm border border-slate-100 text-center">
+            <h2 id="modal-title" class="text-3xl font-extrabold mb-2 tracking-tight text-slate-900">Welcome Back</h2>
+            <p id="modal-desc" class="text-slate-500 mb-8 text-[11px] font-bold uppercase tracking-widest">Access your professional dashboard</p>
             
-            <input type="email" id="email" placeholder="ACCESS KEY (EMAIL)" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl mb-4 focus:border-sky-500 outline-none text-[10px] font-bold uppercase tracking-widest text-white">
-            <input type="password" id="password" placeholder="SECRET (PASSWORD)" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl mb-8 focus:border-sky-500 outline-none text-[10px] font-bold uppercase tracking-widest text-white">
+            <input type="email" id="email" placeholder="Email Address" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl mb-4 focus:bg-white focus:border-sky-500 outline-none text-sm transition-all">
+            <input type="password" id="password" placeholder="Password" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl mb-8 focus:bg-white focus:border-sky-500 outline-none text-sm transition-all">
             
-            <button onclick="handleAuth()" id="auth-btn" class="w-full bg-white text-black py-4 rounded-xl font-black text-[10px] tracking-[0.3em] hover:bg-sky-400 transition-all uppercase">
-                Initialize Account
+            <button onclick="handleAuth()" id="auth-btn" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold text-sm tracking-widest hover:bg-sky-500 transition-all shadow-lg shadow-slate-200">
+                Sign In
             </button>
             
-            <div class="mt-8 pt-8 border-t border-white/5">
-                <p class="text-[8px] font-bold tracking-[0.2em] text-slate-600 uppercase">
-                    <span id="toggle-text">System ID not found?</span> 
-                    <button onclick="toggleAuthMode()" id="toggle-link" class="text-sky-400 hover:text-white ml-2">Request Access</button>
-                </p>
-                <button onclick="toggleModal()" class="mt-6 text-slate-700 text-[8px] font-black uppercase tracking-[0.4em] hover:text-white">Abort</button>
-            </div>
+            <p class="mt-8 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                <span id="toggle-text">Need an account?</span> 
+                <button onclick="toggleAuthMode()" id="toggle-link" class="text-sky-500 hover:underline ml-1">Create Access</button>
+            </p>
+            <button onclick="toggleModal()" class="mt-6 text-slate-300 text-[10px] font-bold uppercase tracking-widest hover:text-slate-600">Dismiss</button>
         </div>
     </div>
 
     <script>
-        // --- SUPABASE CONFIG (STAYS THE SAME) ---
         const sUrl = 'https://joeraoythobkbljnxfmf.supabase.co';
         const sKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpvZXJhb3l0aG9ia2Jsam54Zm1mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTIwMTMsImV4cCI6MjA5MjYyODAxM30.X7hleoi4hBXDGEpWOhTea5nzWwUGxeYLzxxbIEfyqMA';
         const _supabase = supabase.createClient(sUrl, sKey);
 
-        let isLoginMode = false;
+        let isLoginMode = true;
 
         function toggleModal() { document.getElementById('auth-modal').classList.toggle('hidden'); }
 
@@ -210,17 +163,17 @@
             const toggleLink = document.getElementById('toggle-link');
 
             if (isLoginMode) {
-                title.innerText = 'System Login';
-                desc.innerText = 'Identity Verification Required';
-                btn.innerText = 'Authorize';
-                toggleText.innerText = "No credentials?";
-                toggleLink.innerText = 'Request Access';
+                title.innerText = 'Welcome Back';
+                desc.innerText = 'Access your professional dashboard';
+                btn.innerText = 'Sign In';
+                toggleText.innerText = "Need an account?";
+                toggleLink.innerText = 'Create Access';
             } else {
-                title.innerText = 'Establish Connection';
-                desc.innerText = 'Secure Authentication Protocol';
-                btn.innerText = 'Initialize Account';
-                toggleText.innerText = "System ID found?";
-                toggleLink.innerText = 'Connect Now';
+                title.innerText = 'Create Access';
+                desc.innerText = 'Join the global ecosystem';
+                btn.innerText = 'Register Now';
+                toggleText.innerText = "Already a member?";
+                toggleLink.innerText = 'Sign In';
             }
         }
 
@@ -229,19 +182,19 @@
             const password = document.getElementById('password').value;
             const btn = document.getElementById('auth-btn');
 
-            if(!email || !password) return alert("All protocols require full credentials.");
+            if(!email || !password) return alert("Credentials are required for verification.");
 
             btn.disabled = true;
-            btn.innerText = "VERIFYING...";
+            btn.innerText = "Verifying...";
 
             let result = isLoginMode 
                 ? await _supabase.auth.signInWithPassword({ email, password })
                 : await _supabase.auth.signUp({ email, password });
 
             if (result.error) {
-                alert("Protocol Error: " + result.error.message);
+                alert(result.error.message);
                 btn.disabled = false;
-                btn.innerText = isLoginMode ? "Authorize" : "Initialize Account";
+                btn.innerText = isLoginMode ? "Sign In" : "Register Now";
             } else {
                 window.location.href = 'dashboard.html';
             }
