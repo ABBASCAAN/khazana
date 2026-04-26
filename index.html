@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Khazana Jobs | Field Force</title>
+    <title>Khazana Jobs | Premium Field Force</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
     
@@ -13,53 +13,68 @@
             src: url('https://font.paksign.com/fonts/Jameel-Noori-Nastaleeq.ttf') format('truetype');
         }
 
-        :root { --pak-green: #00401A; --cyan: #00D2FF; }
+        :root { --soft-white: #F8FAFC; --deep-green: #064E3B; --mint-glow: #ECFDF5; }
         
         body, html { 
             margin: 0; padding: 0; height: 100%; overflow: hidden; 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #000814; color: white;
+            background: var(--soft-white); color: var(--deep-green);
             user-select: none;
         }
 
-        .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; line-height: 1.5; direction: rtl; }
+        .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; line-height: 1.6; direction: rtl; }
 
-        /* Main Screen Layout */
+        /* Elegant Main Canvas */
         .main-canvas {
             height: 100vh; display: flex; flex-direction: column; justify-content: space-between;
             padding: env(safe-area-inset-top) 30px env(safe-area-inset-bottom) 30px;
-            background: radial-gradient(circle at 50% 0%, var(--pak-green) 0%, #000814 100%);
+            background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+            position: relative;
+        }
+
+        /* Watermark Background */
+        .main-canvas::before {
+            content: 'KPK'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 15rem; font-weight: 900; color: rgba(6, 78, 59, 0.03); z-index: 0;
         }
 
         .btn-eng {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px; height: 80px; display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; transition: 0.4s;
+            background: #FFFFFF; border: 1px solid rgba(6, 78, 59, 0.1);
+            border-radius: 24px; height: 80px; display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; 
+            transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.03); z-index: 1;
         }
-        .btn-eng:active { background: rgba(0, 210, 255, 0.1); transform: scale(0.95); }
+        .btn-eng:active { transform: scale(0.96); background: var(--mint-glow); }
 
-        /* Pop-up Styles */
+        /* Modal Styles */
         .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0, 5, 10, 0.96);
-            backdrop-filter: blur(20px); z-index: 1000; display: none;
+            position: fixed; inset: 0; background: rgba(6, 78, 59, 0.4);
+            backdrop-filter: blur(12px); z-index: 1000; display: none;
             align-items: center; justify-content: center; padding: 20px; opacity: 0; transition: 0.4s;
         }
         
         .modal-box {
-            width: 100%; max-width: 360px; background: linear-gradient(145deg, var(--pak-green) 0%, #000814 100%);
-            border: 1px solid rgba(1, 105, 53, 0.3); border-radius: 35px; padding: 25px 22px; text-align: center;
-            position: relative; pointer-events: auto;
+            width: 100%; max-width: 380px; background: #FFFFFF;
+            border-radius: 35px; padding: 30px 25px; text-align: center;
+            position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .close-btn {
+            position: absolute; top: 15px; right: 20px; font-size: 22px;
+            color: var(--deep-green); opacity: 0.4; font-weight: 300; cursor: pointer;
         }
 
         .input-field {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px; padding: 12px 15px; width: 100%; color: white; font-size: 12px; outline: none;
+            background: #F1F5F9; border: 1px solid rgba(6, 78, 59, 0.05);
+            border-radius: 18px; padding: 15px; width: 100%; color: var(--deep-green); font-size: 12px; outline: none;
         }
 
         .primary-btn {
-            background: linear-gradient(90deg, #016935 0%, #25D366 100%);
-            border-radius: 20px; padding: 18px; color: white; font-weight: 900;
-            text-transform: uppercase; letter-spacing: 0.2em; font-size: 10px; width: 100%;
+            background: var(--deep-green); border-radius: 22px; padding: 18px; 
+            color: white; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 0.2em; font-size: 10px; width: 100%;
+            box-shadow: 0 10px 20px rgba(6, 78, 59, 0.2);
         }
     </style>
 </head>
@@ -67,56 +82,64 @@
 
     <div id="visionModal" class="modal-overlay" onclick="closeOnOutside(event, 'visionModal')" style="display: flex; opacity: 1;">
         <div class="modal-box space-y-4" onclick="event.stopPropagation()">
+            <div class="close-btn" onclick="closeModal('visionModal')">✕</div>
             <div class="space-y-1">
-                <span class="text-[8px] font-black tracking-[0.4em] text-green-400 uppercase">National Vision</span>
-                <h3 class="nastaleeq text-3xl text-white pt-1">ایک قومی فریضہ، ایک روشن عزم</h3>
+                <span class="text-[8px] font-black tracking-[0.4em] text-green-700 uppercase">A Legacy in the Making</span>
+                <h3 class="nastaleeq text-3xl text-emerald-900 pt-1">ہمارا عزم، آپ کی ترقی</h3>
             </div>
-            <p class="nastaleeq text-lg text-white/90 text-right leading-tight">
-                خیبر پختونخوا کی غیرت مند مٹی سے ابھرنے والا یہ نظام، پاکستان کے ہر باصلاحیت نوجوان کے نام ایک تحفہ ہے۔ یہ خدمت ہمیشہ **بالکل مفت** رہے گی۔
-            </p>
-            <button onclick="window.open('whatsapp://send?text=Join the Khazana Jobs Vision!')" class="primary-btn">Spread the Mission</button>
+            <div class="space-y-3 text-right">
+                <p class="nastaleeq text-lg text-emerald-800 leading-snug">
+                    یہ ادارہ صرف ایک پلیٹ فارم نہیں، بلکہ خیبر پختونخوا کے ان باصلاحیت نوجوانوں کی آواز ہے جن کے پاس ہنر تو ہے مگر راستہ نہیں۔ ہم سرحدوں اور رنگ و نسل سے بالاتر ہو کر ایک ایسی 'فیلڈ فورس' تیار کر رہے ہیں جو پاکستان کی معاشی تقدیر بدلنے کا حوصلہ رکھتی ہے۔
+                </p>
+                <p class="nastaleeq text-sm text-emerald-700/80">
+                    ہمارا مقصد ہر اس ہاتھ کو روزگار سے جوڑنا ہے جو محنت کرنا جانتا ہے۔ یاد رکھیے، یہ مشن خالصتاً انسانی خدمت ہے اور یہاں ہر سہولت آپ کے لیے **تاقیامت بالکل مفت** رہے گی۔ اس نیک مقصد میں ہمارا ساتھ دیں اور اسے دوسروں تک پہنچائیں۔
+                </p>
+            </div>
+            <button onclick="window.open('whatsapp://send?text=Khazana Jobs: Khyber Pakhtunkhwa Field Force ka hissa banein. Bilkul Muft!')" class="primary-btn">Spread the Vision</button>
         </div>
     </div>
 
     <div id="postJobModal" class="modal-overlay" onclick="closeOnOutside(event, 'postJobModal')">
         <div class="modal-box space-y-4" onclick="event.stopPropagation()">
-            <h3 class="text-xs font-black tracking-widest text-green-400 uppercase">Post New Opportunity</h3>
+            <div class="close-btn" onclick="closeModal('postJobModal')">✕</div>
+            <h3 class="text-xs font-black tracking-widest text-green-800 uppercase">Post Opportunity</h3>
             <div class="space-y-3">
-                <input type="text" placeholder="JOB TITLE (e.g. Sales Manager)" class="input-field">
-                <textarea placeholder="FULL JOB DESCRIPTION & REQUIREMENTS..." rows="4" class="input-field"></textarea>
+                <input type="text" placeholder="TITLE OF THE JOB" class="input-field">
+                <textarea placeholder="DESCRIBE THE ROLE & SKILLS..." rows="4" class="input-field"></textarea>
             </div>
-            <button onclick="alert('Job Details Saved!'); closeModal('postJobModal')" class="primary-btn">Submit Job Offer</button>
+            <button onclick="alert('Submission Received!'); closeModal('postJobModal')" class="primary-btn">List My Job</button>
         </div>
     </div>
 
     <div id="contactModal" class="modal-overlay" onclick="closeOnOutside(event, 'contactModal')">
         <div class="modal-box space-y-5" onclick="event.stopPropagation()">
-            <h3 class="text-xs font-black tracking-widest text-green-400 uppercase">Contact Admin</h3>
-            <p class="nastaleeq text-lg text-white/80">براہِ راست ہم سے رابطہ کرنے کے لیے نیچے دیے گئے بٹن پر کلک کریں۔</p>
-            <button onclick="window.open('https://wa.me/923348699487')" class="primary-btn !bg-[#25D366]">
-                Chat on WhatsApp
+            <div class="close-btn" onclick="closeModal('contactModal')">✕</div>
+            <h3 class="text-xs font-black tracking-widest text-green-800 uppercase">Admin Support</h3>
+            <p class="nastaleeq text-lg text-emerald-800">کسی بھی قسم کی مدد یا معلومات کے لیے ہمہ وقت حاضر ہیں۔</p>
+            <button onclick="window.open('https://wa.me/923348699487')" class="primary-btn !bg-[#128C7E]">
+                WhatsApp Support
             </button>
-            <p class="text-[8px] text-white/20 tracking-widest">OFFICIAL SUPPORT: 03348699487</p>
+            <p class="text-[8px] text-emerald-900/30 tracking-widest">OFFICIAL HELPLINE: 03348699487</p>
         </div>
     </div>
 
     <div class="main-canvas">
-        <header class="pt-8 flex flex-col items-center">
-            <h1 class="text-xl font-[900] italic tracking-tighter text-white">KHAZANA <span class="text-green-500">JOBS</span></h1>
-            <p class="text-[6px] font-bold text-white/40 tracking-[0.8em] mt-1 uppercase">Pakistan First</p>
+        <header class="pt-10 flex flex-col items-center z-10">
+            <h1 class="text-xl font-[900] italic tracking-tighter text-emerald-900">KHAZANA <span class="text-emerald-500">JOBS</span></h1>
+            <p class="text-[6px] font-bold text-emerald-900/30 tracking-[0.8em] mt-1 uppercase">Pakistan First</p>
         </header>
 
-        <div class="text-center">
-            <p class="text-[9px] font-bold text-green-400/50 uppercase tracking-[0.4em] mb-3">Unit Identity</p>
-            <h2 class="text-4xl font-black tracking-tighter text-white/90 leading-tight">KHYBER<br>PAKHTUNKHWA<br><span class="text-green-500">FIELD FORCE.</span></h2>
-            <div class="w-10 h-[1px] bg-green-500/20 mx-auto mt-6"></div>
+        <div class="text-center z-10">
+            <p class="text-[9px] font-bold text-emerald-500 uppercase tracking-[0.4em] mb-3">Unit Identity</p>
+            <h2 class="text-4xl font-black tracking-tighter text-emerald-900 leading-tight">KHYBER<br>PAKHTUNKHWA<br><span class="text-emerald-600">FIELD FORCE.</span></h2>
+            <div class="w-10 h-[2px] bg-emerald-500/20 mx-auto mt-6"></div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 pb-12">
-            <button class="btn-eng border-green-500/10 text-green-400">Find Job</button>
-            <button onclick="openModal('postJobModal')" class="btn-eng">Post Job</button>
-            <button onclick="openModal('visionModal')" class="btn-eng !h-12 !opacity-100">About</button>
-            <button onclick="openModal('contactModal')" class="btn-eng !h-12 !opacity-100">Contact</button>
+        <div class="grid grid-cols-2 gap-4 pb-12 z-10">
+            <button class="btn-eng text-emerald-700">Find Job</button>
+            <button onclick="openModal('postJobModal')" class="btn-eng text-emerald-700">Post Job</button>
+            <button onclick="openModal('visionModal')" class="btn-eng !h-12">About</button>
+            <button onclick="openModal('contactModal')" class="btn-eng !h-12">Contact</button>
         </div>
     </div>
 
@@ -131,11 +154,8 @@
             modal.style.opacity = '0';
             setTimeout(() => modal.style.display = 'none', 400);
         }
-        // Click Outside to Close Logic
         function closeOnOutside(event, id) {
-            if (event.target === document.getElementById(id)) {
-                closeModal(id);
-            }
+            if (event.target === document.getElementById(id)) { closeModal(id); }
         }
     </script>
 </body>
