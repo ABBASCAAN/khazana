@@ -2,219 +2,153 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Khazana Jobs | Professional Workforce Network</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Khazana Jobs | National Infrastructure</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: #fdfdfd;
-            scroll-behavior: smooth;
+            background: #00150a; /* Deep Enterprise Green */
+            color: white;
+            -webkit-font-smoothing: antialiased;
         }
-        .main-gradient { background: linear-gradient(135deg, #004225 0%, #00150a 100%); }
-        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.3); }
-        .card-shadow { box-shadow: 0 20px 40px -15px rgba(0, 66, 37, 0.08); }
-        .nav-active { border-bottom: 3px solid #10b981; color: #10b981; }
+        .app-gradient {
+            background: radial-gradient(circle at top right, #004225 0%, #00150a 100%);
+        }
+        .bento-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .bento-card:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.06); }
         
-        /* Desktop vs Mobile Optimization */
-        @media (min-width: 1024px) {
-            .app-container { max-width: 1200px; margin: 0 auto; }
-            .hero-title { font-size: 5rem; }
+        /* Smooth Bottom Navigation */
+        .bottom-nav {
+            position: fixed; bottom: 20px; left: 20px; right: 20px;
+            height: 72px; background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(30px); border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
         }
         
-        .floating-icon { animation: float 6s ease-in-out infinite; }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        .premium-text-gradient {
+            background: linear-gradient(to bottom right, #ffffff 30%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
+        /* Hide scrollbar but keep functionality */
+        ::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="text-slate-900 leading-tight">
+<body class="app-gradient min-h-screen pb-32">
 
-    <nav class="fixed w-full z-50 glass-panel border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 main-gradient rounded-xl flex items-center justify-center shadow-lg shadow-emerald-900/20">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    <header class="pt-14 px-8 flex justify-between items-center sticky top-0 z-50 bg-[#00150a]/20 backdrop-blur-md pb-4">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-emerald-500 rounded-[14px] flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h1 class="text-xl font-extrabold tracking-tighter italic">KHAZANA<span class="text-emerald-500">JOBS</span></h1>
+        </div>
+        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5">
+            <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+    </header>
+
+    <main class="mt-8 px-6 space-y-6">
+        
+        <section class="space-y-2">
+            <p class="text-emerald-500 text-[10px] font-black uppercase tracking-[0.4em] ml-1">Ecosystem Infrastructure</p>
+            <h2 class="text-5xl font-black leading-[0.95] tracking-tight premium-text-gradient">
+                Elevating <br> National <br> Potential.
+            </h2>
+            <div class="pt-4 flex items-center gap-2">
+                <div class="h-[1px] w-8 bg-emerald-500"></div>
+                <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest italic">Strictly Non-Profit & Permanent Free</p>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-2 gap-4">
+            <div class="bento-card col-span-2 p-8 flex flex-col justify-between min-h-[180px] relative overflow-hidden group">
+                <div class="absolute top-[-20%] right-[-10%] w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all"></div>
+                <div>
+                    <h3 class="text-2xl font-black italic mb-2">Acquire Opportunity</h3>
+                    <p class="text-white/40 text-xs font-medium">Browse verified regional listings.</p>
                 </div>
-                <div class="leading-none">
-                    <span class="text-xl font-extrabold tracking-tighter text-[#004225]">KHAZANA<span class="text-emerald-500 italic">JOBS</span></span>
+                <div class="flex justify-between items-end">
+                    <span class="text-3xl">🔍</span>
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#00150a]">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card p-6 flex flex-col justify-between min-h-[160px]">
+                <span class="text-3xl mb-4">📢</span>
+                <div>
+                    <h4 class="font-black text-sm uppercase italic">List Vacancy</h4>
+                    <p class="text-[10px] text-white/30 font-bold mt-1 tracking-wider uppercase">Enterprise Mode</p>
+                </div>
+            </div>
+
+            <div class="bento-card p-6 flex flex-col justify-between min-h-[160px] border-emerald-500/30">
+                <span class="text-3xl mb-4">🛡️</span>
+                <div>
+                    <h4 class="font-black text-sm uppercase italic">Identity ID</h4>
+                    <p class="text-[10px] text-emerald-500 font-black mt-1 tracking-wider uppercase">Active Security</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bento-card p-8 space-y-6">
+            <div class="flex items-center gap-4 border-b border-white/5 pb-4">
+                <div class="w-2 h-10 bg-emerald-500 rounded-full"></div>
+                <div>
+                    <h3 class="font-black text-lg uppercase italic tracking-tighter">Terminal Auth</h3>
+                    <p class="text-[9px] text-white/30 font-bold uppercase tracking-widest leading-none">Biometric-Grade Checksum Logic</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-black/20 rounded-2xl p-5 border border-white/5">
+                    <label class="text-[9px] font-black text-white/20 uppercase tracking-[0.3em] mb-2 block">National Identity Number</label>
+                    <input type="text" id="cnicInput" maxlength="13" placeholder="0000000000000" 
+                        class="bg-transparent w-full text-2xl font-bold tracking-[0.2em] focus:outline-none placeholder:text-white/5">
+                </div>
+
+                <div id="statusResult" class="hidden animate-pulse">
+                    <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center">
+                        <span id="genderInfo" class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.4em]"></span>
+                    </div>
                 </div>
             </div>
             
-            <div class="hidden lg:flex gap-10 text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
-                <a href="#" class="nav-active pb-1">Enterprise Hub</a>
-                <a href="#" class="hover:text-emerald-600">Verification Terminal</a>
-                <a href="#" class="hover:text-emerald-600">Documentation</a>
-            </div>
+            <p class="text-[9px] text-white/20 text-center font-bold uppercase tracking-widest leading-relaxed px-4">
+                This platform is, and will always remain, <span class="text-emerald-500">100% Free of Cost</span> for the citizens of Pakistan.
+            </p>
+        </section>
 
-            <button class="bg-[#004225] text-white px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl shadow-emerald-900/10 hover:scale-105 transition-all">Portal Access</button>
+    </main>
+
+    <nav class="bottom-nav flex justify-around items-center px-4">
+        <div class="flex flex-col items-center gap-1">
+            <div class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-emerald-500/40">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </div>
+        </div>
+        <div class="flex flex-col items-center gap-1 text-white/20">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <div class="flex flex-col items-center gap-1 text-white/20">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+        </div>
+        <div class="flex flex-col items-center gap-1 text-white/20">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
         </div>
     </nav>
-
-    <section class="pt-32 pb-20 px-6 main-gradient relative overflow-hidden">
-        <div class="absolute top-20 right-[10%] w-64 h-64 bg-emerald-500/10 rounded-full blur-[100px]"></div>
-        <div class="absolute bottom-10 left-[5%] w-40 h-40 bg-emerald-400/5 rounded-full blur-[80px]"></div>
-
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-lg mb-6">
-                    <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
-                    <span class="text-emerald-400 text-[10px] font-bold uppercase tracking-[0.3em]">National Infrastructure Network</span>
-                </div>
-                <h1 class="hero-title text-5xl font-[900] text-white tracking-tighter leading-[0.9] mb-8">
-                    The Future of <br> <span class="text-emerald-500 italic">Professional</span> Recruitment.
-                </h1>
-                <p class="text-slate-400 text-lg max-w-lg mb-10 font-medium">
-                    An advanced, non-profit ecosystem bridging the gap between national talent and industrial demand. 100% Secure. 100% Free.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <button class="bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest shadow-2xl shadow-emerald-500/30 hover:bg-emerald-400 transition-all">Post an Opportunity</button>
-                    <button class="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-white/10 transition-all">Browse Network</button>
-                </div>
-            </div>
-
-            <div class="bg-white/5 backdrop-blur-2xl border border-white/10 p-1 rounded-[2.5rem] shadow-3xl">
-                <div class="bg-white rounded-[2.2rem] p-8">
-                    <div class="flex items-center gap-4 mb-8">
-                        <img src="https://img.icons8.com/fluency/48/verified-account.png" class="w-10 h-10" alt="Verification Icon"/>
-                        <div>
-                            <h3 class="text-sm font-black text-slate-800 uppercase tracking-tighter">Verification Terminal</h3>
-                            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Digital ID Authentication</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-5">
-                        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Input National ID (CNIC)</label>
-                            <input type="text" id="cnicInput" maxlength="13" placeholder="00000-0000000-0" class="w-full bg-transparent text-xl font-bold text-slate-800 focus:outline-none">
-                        </div>
-
-                        <div id="statusResult" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div class="p-5 bg-emerald-50 rounded-2xl border-2 border-dashed border-emerald-100 flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xs">✓</div>
-                                    <span id="genderInfo" class="font-black text-[#004225] text-xs uppercase tracking-tighter"></span>
-                                </div>
-                                <span class="bg-white px-3 py-1 rounded-full text-[9px] font-black text-emerald-600 border border-emerald-100 uppercase">Verified</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 bg-[#f8fafc]">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-4 gap-6">
-                <div class="bg-white p-8 rounded-[2rem] card-shadow border border-slate-100">
-                    <img src="https://img.icons8.com/fluency/96/briefcase.png" class="w-12 h-12 mb-6" alt="Jobs"/>
-                    <h4 class="text-xl font-extrabold text-[#004225] mb-3 tracking-tighter italic">Job Sourcing</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">Hyper-local and national employment database with zero latency filtering.</p>
-                </div>
-                <div class="bg-white p-8 rounded-[2rem] card-shadow border border-slate-100">
-                    <img src="https://img.icons8.com/fluency/96/conference-call.png" class="w-12 h-12 mb-6" alt="Recruitment"/>
-                    <h4 class="text-xl font-extrabold text-[#004225] mb-3 tracking-tighter italic">Bulk Hiring</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">Direct enterprise-to-worker connection for factories and SMEs.</p>
-                </div>
-                <div class="bg-white p-8 rounded-[2rem] card-shadow border border-slate-100">
-                    <img src="https://img.icons8.com/fluency/96/shield.png" class="w-12 h-12 mb-6" alt="Security"/>
-                    <h4 class="text-xl font-extrabold text-[#004225] mb-3 tracking-tighter italic">Security Logic</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">Checksum-based CNIC algorithms ensuring authentic profile creation.</p>
-                </div>
-                <div class="bg-[#004225] p-8 rounded-[2rem] shadow-2xl">
-                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white font-bold text-xl mb-6 italic">100%</div>
-                    <h4 class="text-xl font-extrabold text-white mb-3 tracking-tighter italic">Free Service</h4>
-                    <p class="text-xs text-emerald-100/60 leading-relaxed font-medium">Non-profit commitment to national infrastructure development.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
-            <div class="lg:w-1/2">
-                <h3 class="text-emerald-600 font-black uppercase text-[10px] tracking-[0.5em] mb-6 underline decoration-4 underline-offset-8">Architecture</h3>
-                <h2 class="text-4xl font-[900] text-[#004225] tracking-tighter leading-none mb-8">Strict Professional Governance.</h2>
-                <div class="space-y-8">
-                    <div class="flex gap-6">
-                        <div class="w-12 h-12 flex-shrink-0 bg-slate-100 rounded-2xl flex items-center justify-center">
-                            <img src="https://img.icons8.com/fluency/48/search.png" class="w-6 h-6"/>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-slate-800 text-lg">Intelligent Filtering</h5>
-                            <p class="text-sm text-slate-500 font-medium">Search for candidates or opportunities based on precise regional and category data points.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-6">
-                        <div class="w-12 h-12 flex-shrink-0 bg-slate-100 rounded-2xl flex items-center justify-center">
-                            <img src="https://img.icons8.com/fluency/48/gender-neutral-user.png" class="w-6 h-6"/>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-slate-800 text-lg">Gender-Neutral Verification</h5>
-                            <p class="text-sm text-slate-500 font-medium">Automated system logic detects applicant gender profile via CNIC terminal to prevent identity spoofing.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="lg:w-1/2 w-full">
-                <div class="relative">
-                    <div class="absolute -inset-4 bg-emerald-500/10 blur-2xl rounded-full"></div>
-                    <div class="relative bg-white border border-slate-100 p-2 rounded-[3rem] shadow-2xl">
-                        <div class="p-8 space-y-4">
-                            <div class="flex justify-between items-center bg-slate-50 p-4 rounded-2xl">
-                                <span class="text-xs font-bold text-slate-400">STATUS: ACTIVE</span>
-                                <span class="text-xs font-black text-emerald-500 tracking-widest">LIVE FEED</span>
-                            </div>
-                            <div class="h-[2px] w-full bg-slate-100"></div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center">💼</div>
-                                <div>
-                                    <h6 class="text-sm font-black uppercase text-slate-800">Sr. Sales Representative</h6>
-                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Regional Distribution Centre</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="lg:hidden fixed bottom-6 left-6 right-6 h-18 bg-[#00150a]/90 backdrop-blur-xl border border-white/10 rounded-[2rem] z-[100] flex justify-around items-center px-4 shadow-2xl">
-        <div class="flex flex-col items-center gap-1 text-emerald-500">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            <span class="text-[9px] font-black uppercase tracking-widest">Home</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 text-white/40">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <span class="text-[9px] font-black uppercase tracking-widest">Jobs</span>
-        </div>
-        <div class="flex flex-col items-center gap-1 text-white/40">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <span class="text-[9px] font-black uppercase tracking-widest">Post</span>
-        </div>
-    </div>
-
-    <footer class="bg-white border-t border-slate-100 pt-20 pb-12 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 border-b border-slate-100 pb-12 mb-12">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 main-gradient rounded-lg flex items-center justify-center shadow-lg text-white font-black italic">K</div>
-                <span class="text-xl font-black tracking-tighter text-[#004225]">KHAZANA<span class="text-emerald-500">JOBS</span></span>
-            </div>
-            <div class="flex gap-10 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="#">Privacy</a>
-                <a href="#">Compliance</a>
-                <a href="#">Security</a>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto text-center">
-            <p class="text-[10px] font-black text-slate-300 uppercase tracking-[0.5em]">© 2026 KHAZANA INFRASTRUCTURE NETWORK | NATIONAL TERMINAL</p>
-        </div>
-    </footer>
 
     <script>
         const cnicInput = document.getElementById('cnicInput');
@@ -222,20 +156,21 @@
         const genderInfo = document.getElementById('genderInfo');
 
         cnicInput.addEventListener('input', (e) => {
-            let val = e.target.value.replace(/\D/g, ''); // Non-digits remove karein
+            let val = e.target.value.replace(/\D/g, ''); 
             if (val.length === 13) {
                 const lastDigit = parseInt(val.charAt(12));
                 statusResult.classList.remove('hidden');
                 
                 if (lastDigit % 2 === 0) {
-                    genderInfo.innerText = "VERIFIED: FEMALE CANDIDATE LOGIC";
+                    genderInfo.innerText = "AUTHENTICATED: FEMALE PROFILE";
                 } else {
-                    genderInfo.innerText = "VERIFIED: MALE CANDIDATE LOGIC";
+                    genderInfo.innerText = "AUTHENTICATED: MALE PROFILE";
                 }
             } else {
                 statusResult.classList.add('hidden');
             }
         });
     </script>
+
 </body>
 </html>
