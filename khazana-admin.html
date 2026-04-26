@@ -1,15 +1,58 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Khazana Jobs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Control Panel | Khazana Jobs</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --soft-white: #F8FAFC; --deep-green: #064E3B; --mint-glow: #ECFDF5; }
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+            color: var(--deep-green);
+            min-height: 100vh;
+        }
+
+        /* KPK Watermark Background */
+        body::before {
+            content: 'KPK'; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 12rem; font-weight: 900; color: rgba(6, 78, 59, 0.03); z-index: -1;
+        }
+
+        .input-field {
+            background: white; border: 1px solid rgba(6, 78, 59, 0.08);
+            border-radius: 20px; padding: 18px; width: 100%; 
+            color: var(--deep-green); font-size: 13px; outline: none;
+            transition: 0.3s; text-align: left; /* Left alignment for Pro feel */
+        }
+        .input-field:focus { border-color: var(--deep-green); box-shadow: 0 0 0 4px rgba(6, 78, 59, 0.05); }
+
+        .primary-btn {
+            background: var(--deep-green); border-radius: 22px; padding: 20px; 
+            color: white; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 0.2em; font-size: 10px; width: 100%;
+            box-shadow: 0 10px 25px rgba(6, 78, 59, 0.2); 
+            transition: 0.3s; cursor: pointer; border: none;
+        }
+        .primary-btn:active { transform: scale(0.96); opacity: 0.9; }
+
+        .job-item {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid white;
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+    </style>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Aapka Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyC3_OdMLA_vKedi78_1isqKTAYGeYYhGfs",
             authDomain: "khazana-830dc.firebaseapp.com",
@@ -23,34 +66,27 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // --- Post Job ---
         window.postJob = async () => {
             const title = document.getElementById('title').value;
             const city = document.getElementById('city').value;
-            const phone = document.getElementById('phone').value; // Naya Input
+            const phone = document.getElementById('phone').value;
             const desc = document.getElementById('desc').value;
 
-            if(!title || !desc || !phone) return alert("Meharbani karke sab khane bharein, phone number zaroori hai!");
-
-            // Phone number format check (Optional: 92 se shuru ho to behtar hai)
-            if(phone.length < 10) return alert("Meharbani karke sahi WhatsApp number likhein!");
+            if(!title || !desc || !phone) return alert("Please fill all fields!");
+            if(phone.length < 10) return alert("Invalid WhatsApp number!");
 
             try {
                 await addDoc(collection(db, "jobs"), {
-                    title, 
-                    city, 
-                    phone, // Database mein phone save ho raha hai
-                    desc, 
+                    title, city, phone, desc, 
                     createdAt: serverTimestamp(),
                     dateStr: new Date().toLocaleDateString()
                 });
-                alert("Mubarak ho! Job Online Post ho gayi.");
+                alert("Success! Job is now live.");
                 resetForm();
                 loadJobs();
             } catch (e) { alert("Error: " + e.message); }
         };
 
-        // --- Load Jobs ---
         window.loadJobs = async () => {
             const q = query(collection(db, "jobs"), orderBy("createdAt", "desc"));
             const querySnapshot = await getDocs(q);
@@ -59,18 +95,18 @@
             querySnapshot.forEach((docSnap) => {
                 const job = docSnap.data();
                 list.innerHTML += `
-                    <div class="bg-white p-4 mb-3 rounded-2xl shadow-sm border flex justify-between items-center">
+                    <div class="job-item p-5 mb-4 shadow-sm flex justify-between items-center text-left">
                         <div>
-                            <p class="font-black text-emerald-900">${job.title}</p>
-                            <p class="text-[10px] text-gray-400 uppercase font-bold">${job.city} | ${job.phone || 'No Number'}</p>
+                            <p class="font-black text-emerald-900 tracking-tight">${job.title}</p>
+                            <p class="text-[9px] text-emerald-600/50 uppercase font-bold tracking-widest mt-1">${job.city} • ${job.phone}</p>
                         </div>
-                        <button onclick="deleteJob('${docSnap.id}')" class="bg-red-50 text-red-500 p-2 px-4 rounded-xl text-[10px] font-black hover:bg-red-100 transition-colors">DELETE</button>
+                        <button onclick="deleteJob('${docSnap.id}')" class="bg-red-50 text-red-500 px-4 py-2 rounded-xl text-[9px] font-black tracking-widest hover:bg-red-100 transition-all">REMOVE</button>
                     </div>`;
             });
         };
 
         window.deleteJob = async (id) => {
-            if(confirm("Kya aap waqai ye post khatam karna chahte hain?")) {
+            if(confirm("Permanently delete this posting?")) {
                 await deleteDoc(doc(db, "jobs", id));
                 loadJobs();
             }
@@ -84,31 +120,35 @@
 
         window.onload = loadJobs;
     </script>
-    <style>body { font-family: sans-serif; background: #f8fafc; }</style>
 </head>
 <body class="p-6">
-    <div class="max-w-md mx-auto">
-        <h1 class="text-2xl font-black text-emerald-900 mb-6 text-center uppercase tracking-tighter">Khazana Control Panel</h1>
+    <div class="max-w-md mx-auto pt-8">
+        <header class="text-center mb-10">
+            <h1 class="text-xl font-black italic tracking-tighter text-emerald-900">KHAZANA <span class="text-emerald-500">ADMIN</span></h1>
+            <p class="text-[7px] font-bold text-emerald-900/30 tracking-[0.6em] mt-1 uppercase">Unit Control Center</p>
+        </header>
         
-        <div class="bg-white p-6 rounded-[35px] shadow-xl border border-white mb-8">
-            <input type="text" id="title" placeholder="Job Title (e.g. Salesman)" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none focus:ring-2 focus:ring-emerald-500 transition-all">
+        <div class="space-y-4 mb-12">
+            <input type="text" id="title" placeholder="JOB TITLE" class="input-field">
             
-            <select id="city" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none font-bold text-emerald-800 focus:ring-2 focus:ring-emerald-500 transition-all">
+            <select id="city" class="input-field font-bold uppercase tracking-widest text-[11px]">
                 <option value="swabi">Swabi</option>
                 <option value="mardan">Mardan</option>
                 <option value="peshawar">Peshawar</option>
                 <option value="nowshera">Nowshera</option>
             </select>
 
-            <input type="number" id="phone" placeholder="WhatsApp Number (e.g. 923123456789)" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none focus:ring-2 focus:ring-emerald-500 transition-all">
+            <input type="number" id="phone" placeholder="WHATSAPP (e.g. 923...)" class="input-field">
             
-            <textarea id="desc" placeholder="Job Details (Urdu/English)..." rows="5" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none focus:ring-2 focus:ring-emerald-500 transition-all"></textarea>
+            <textarea id="desc" placeholder="DESCRIBE THE ROLE & SKILLS..." rows="5" class="input-field"></textarea>
             
-            <button onclick="postJob()" class="w-full bg-emerald-900 text-white p-5 rounded-2xl font-black text-xs tracking-widest uppercase hover:bg-emerald-800 active:scale-95 transition-all shadow-lg">Go Live Now</button>
+            <button onclick="postJob()" class="primary-btn mt-4">Go Live Now</button>
         </div>
 
-        <h2 class="text-[10px] font-black text-emerald-900/30 uppercase tracking-[0.3em] mb-4 px-4 text-center">Live Postings</h2>
-        <div id="jobList"></div>
+        <div class="pt-4">
+            <h2 class="text-[9px] font-black text-emerald-900/20 uppercase tracking-[0.4em] mb-6 text-center">Active Deployments</h2>
+            <div id="jobList"></div>
+        </div>
     </div>
 </body>
 </html>
