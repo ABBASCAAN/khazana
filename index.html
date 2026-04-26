@@ -24,7 +24,6 @@
 
         .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; line-height: 1.6; direction: rtl; }
 
-        /* Elegant Main Canvas */
         .main-canvas {
             height: 100vh; display: flex; flex-direction: column; justify-content: space-between;
             padding: env(safe-area-inset-top) 30px env(safe-area-inset-bottom) 30px;
@@ -32,7 +31,6 @@
             position: relative;
         }
 
-        /* Watermark Background */
         .main-canvas::before {
             content: 'KPK'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             font-size: 15rem; font-weight: 900; color: rgba(6, 78, 59, 0.03); z-index: 0;
@@ -42,11 +40,10 @@
             background: #FFFFFF; border: 1px solid rgba(6, 78, 59, 0.1);
             border-radius: 24px; height: 80px; display: flex; align-items: center; justify-content: center;
             font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; 
-            transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.03); z-index: 1;
+            transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.03); z-index: 1; cursor: pointer;
         }
         .btn-eng:active { transform: scale(0.96); background: var(--mint-glow); }
 
-        /* Modal Styles */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(6, 78, 59, 0.4);
             backdrop-filter: blur(12px); z-index: 1000; display: none;
@@ -74,7 +71,8 @@
             background: var(--deep-green); border-radius: 22px; padding: 18px; 
             color: white; font-weight: 900; text-transform: uppercase; 
             letter-spacing: 0.2em; font-size: 10px; width: 100%;
-            box-shadow: 0 10px 20px rgba(6, 78, 59, 0.2);
+            box-shadow: 0 10px 20px rgba(6, 78, 59, 0.2); display: flex; align-items: center; justify-content: center;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -95,7 +93,7 @@
                     ہمارا مقصد ہر اس ہاتھ کو روزگار سے جوڑنا ہے جو محنت کرنا جانتا ہے۔ یاد رکھیے، یہ مشن خالصتاً انسانی خدمت ہے اور یہاں ہر سہولت آپ کے لیے **تاقیامت بالکل مفت** رہے گی۔ اس نیک مقصد میں ہمارا ساتھ دیں اور اسے دوسروں تک پہنچائیں۔
                 </p>
             </div>
-            <button onclick="window.open('https://api.whatsapp.com/send?text=Khazana%20Jobs:%20Khyber%20Pakhtunkhwa%20Field%20Force%20ka%20hissa%20banein.%20Bilkul%20Muft!')" class="primary-btn">Spread the Vision</button>
+            <a href="https://api.whatsapp.com/send?text=Khazana%20Jobs:%20Khyber%20Pakhtunkhwa%20Field%20Force%20ka%20hissa%20banein." target="_system" class="primary-btn">Spread the Vision</a>
         </div>
     </div>
 
@@ -107,7 +105,7 @@
                 <input type="text" placeholder="TITLE OF THE JOB" class="input-field">
                 <textarea placeholder="DESCRIBE THE ROLE & SKILLS..." rows="4" class="input-field"></textarea>
             </div>
-            <button onclick="alert('Submission Received!'); closeModal('postJobModal')" class="primary-btn">List My Job</button>
+            <button onclick="alert('Submission Received!'); closeModal('postJobModal')" class="primary-btn border-none cursor-pointer">List My Job</button>
         </div>
     </div>
 
@@ -116,9 +114,9 @@
             <div class="close-btn" onclick="closeModal('contactModal')">✕</div>
             <h3 class="text-xs font-black tracking-widest text-green-800 uppercase">Admin Support</h3>
             <p class="nastaleeq text-lg text-emerald-800">کسی بھی قسم کی مدد یا معلومات کے لیے ہمہ وقت حاضر ہیں۔</p>
-            <button onclick="window.open('https://api.whatsapp.com/send?phone=923348699487')" class="primary-btn !bg-[#128C7E]">
+            <a href="https://api.whatsapp.com/send?phone=923348699487" target="_system" class="primary-btn !bg-[#128C7E]">
                 WhatsApp Support
-            </button>
+            </a>
             <p class="text-[8px] text-emerald-900/30 tracking-widest">OFFICIAL HELPLINE: 03348699487</p>
         </div>
     </div>
@@ -136,10 +134,10 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4 pb-12 z-10">
-            <button class="btn-eng text-emerald-700">Find Job</button>
-            <button onclick="openModal('postJobModal')" class="btn-eng text-emerald-700">Post Job</button>
-            <button onclick="openModal('visionModal')" class="btn-eng !h-12">About</button>
-            <button onclick="openModal('contactModal')" class="btn-eng !h-12">Contact</button>
+            <div class="btn-eng text-emerald-700">Find Job</div>
+            <div onclick="openModal('postJobModal')" class="btn-eng text-emerald-700">Post Job</div>
+            <div onclick="openModal('visionModal')" class="btn-eng !h-12">About</div>
+            <div onclick="openModal('contactModal')" class="btn-eng !h-12">Contact</div>
         </div>
     </div>
 
