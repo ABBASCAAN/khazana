@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details | Khazana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face { font-family: 'Jameel Noori Nastaleeq'; src: url('https://font.paksign.com/fonts/Jameel-Noori-Nastaleeq.ttf') format('truetype'); }
+        .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; line-height: 2; }
+    </style>
+</head>
+<body class="bg-slate-50 p-6">
+    <div id="content" class="max-w-md mx-auto bg-white rounded-[40px] p-8 shadow-2xl min-h-[50vh] flex flex-col justify-between">
+        <p class="text-center animate-pulse opacity-30">Loading Details...</p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = { /* APNA CONFIG YAHAN DALAIN */ };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function loadDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobId = urlParams.get('id');
+            if (!jobId) return;
+
+            const docRef = doc(db, "jobs", jobId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const job = docSnap.data();
+                document.getElementById('content').innerHTML = `
+                    <div>
+                        <span class="text-[10px] font-black text-emerald-500 uppercase tracking-widest">${job.city}</span>
+                        <h1 class="text-3xl font-black text-emerald-900 mt-2 mb-6">${job.title}</h1>
+                        <div class="h-1 w-10 bg-emerald-100 mb-6"></div>
+                        <p class="nastaleeq text-xl text-emerald-800 text-right">${job.desc}</p>
+                    </div>
+                    <div class="mt-10">
+                        <a href="https://api.whatsapp.com/send?phone=${job.phone}&text=Assalamoalaikum! Mujhay Khazana Jobs par aapki post '${job.title}' mein dilchaspi hai." 
+                           class="block text-center bg-[#128C7E] text-white p-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg active:scale-95 transition-all">
+                           Apply via WhatsApp
+                        </a>
+                        <button onclick="history.back()" class="w-full mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-tighter">← Back to List</button>
+                    </div>
+                `;
+            }
+        }
+        loadDetail();
+    </script>
+</body>
+</html>
