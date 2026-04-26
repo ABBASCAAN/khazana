@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Khazana Jobs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Aapka Firebase Config jo screenshot mein tha
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3_OdMLA_vKedi78_1isqKTAYGeYYhGfs",
+            authDomain: "khazana-830dc.firebaseapp.com",
+            projectId: "khazana-830dc",
+            storageBucket: "khazana-830dc.firebasestorage.app",
+            messagingSenderId: "475195159792",
+            appId: "1:475195159792:web:f676958613562e5d10fe35",
+            measurementId: "G-HC5WMRT7NW"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- Post Job ---
+        window.postJob = async () => {
+            const title = document.getElementById('title').value;
+            const city = document.getElementById('city').value;
+            const desc = document.getElementById('desc').value;
+
+            if(!title || !desc) return alert("Meharbani karke sab khane bharein!");
+
+            try {
+                await addDoc(collection(db, "jobs"), {
+                    title, city, desc, 
+                    createdAt: serverTimestamp(),
+                    dateStr: new Date().toLocaleDateString()
+                });
+                alert("Mubarak ho! Job Online Post ho gayi.");
+                resetForm();
+                loadJobs();
+            } catch (e) { alert("Error: " + e.message); }
+        };
+
+        // --- Load Jobs ---
+        window.loadJobs = async () => {
+            const q = query(collection(db, "jobs"), orderBy("createdAt", "desc"));
+            const querySnapshot = await getDocs(q);
+            const list = document.getElementById('jobList');
+            list.innerHTML = "";
+            querySnapshot.forEach((docSnap) => {
+                const job = docSnap.data();
+                list.innerHTML += `
+                    <div class="bg-white p-4 mb-3 rounded-2xl shadow-sm border flex justify-between items-center">
+                        <div>
+                            <p class="font-black text-emerald-900">${job.title}</p>
+                            <p class="text-[10px] text-gray-400 uppercase font-bold">${job.city}</p>
+                        </div>
+                        <button onclick="deleteJob('${docSnap.id}')" class="bg-red-50 text-red-500 p-2 px-4 rounded-xl text-[10px] font-black">DELETE</button>
+                    </div>`;
+            });
+        };
+
+        window.deleteJob = async (id) => {
+            if(confirm("Kya aap waqai ye post khatam karna chahte hain?")) {
+                await deleteDoc(doc(db, "jobs", id));
+                loadJobs();
+            }
+        };
+
+        function resetForm() {
+            document.getElementById('title').value = '';
+            document.getElementById('desc').value = '';
+        }
+
+        window.onload = loadJobs;
+    </script>
+    <style>body { font-family: sans-serif; background: #f8fafc; }</style>
+</head>
+<body class="p-6">
+    <div class="max-w-md mx-auto">
+        <h1 class="text-2xl font-black text-emerald-900 mb-6 text-center">KHAZANA ADMIN</h1>
+        <div class="bg-white p-6 rounded-[35px] shadow-xl border border-white mb-8">
+            <input type="text" id="title" placeholder="Job Title (e.g. Salesman)" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none">
+            <select id="city" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none font-bold text-emerald-800">
+                <option value="swabi">Swabi</option>
+                <option value="mardan">Mardan</option>
+                <option value="peshawar">Peshawar</option>
+                <option value="nowshera">Nowshera</option>
+            </select>
+            <textarea id="desc" placeholder="Job Details (Urdu/English)..." rows="5" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none"></textarea>
+            <button onclick="postJob()" class="w-full bg-emerald-900 text-white p-5 rounded-2xl font-black text-xs tracking-widest uppercase">Go Live Now</button>
+        </div>
+        <div id="jobList"></div>
+    </div>
+</body>
+</html>
