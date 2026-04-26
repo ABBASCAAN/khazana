@@ -3,141 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khazana Jobs | Berozgar-Mukt Pakistan</title>
+    <title>Khazana Jobs | Pakistan's Premier Human Capital Network</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Urbanist', sans-serif; }
-        .pak-green { color: #01411C; }
-        .pak-bg-green { background-color: #01411C; }
-        .glass-effect { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        :root { --pak-green: #004225; --gold: #D4AF37; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .hero-gradient { background: radial-gradient(circle at top right, #004225 0%, #011a0e 100%); }
+        .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 66, 37, 0.1); }
+        .feature-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(0, 66, 37, 0.15); }
+        .cnic-status { font-[900]; letter-spacing: 1px; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-slate-50">
 
-    <nav class="fixed w-full z-50 glass-effect border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 pak-bg-green rounded-xl flex items-center justify-center text-white font-black">K</div>
-                <span class="text-2xl font-black tracking-tighter pak-green italic">KHAZANA<span class="text-emerald-500">JOBS</span></span>
+    <nav class="fixed w-full z-[100] glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-[#004225] rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-white font-black text-xl italic">K</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black text-[#004225] leading-none uppercase tracking-tighter">Khazana<span class="text-emerald-600">Jobs</span></h1>
+                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">National Infrastructure</p>
+                </div>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-slate-600">
-                <a href="#" class="hover:text-emerald-600">Dhoondein</a>
-                <a href="#" class="hover:text-emerald-600">Post Karein</a>
-                <a href="#" class="hover:text-emerald-600 text-emerald-600">100% Free</a>
+            <div class="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+                <a href="#ecosystem" class="hover:text-emerald-600 transition-colors">Ecosystem</a>
+                <a href="#verification" class="hover:text-emerald-600 transition-colors">Verification</a>
+                <a href="#impact" class="hover:text-emerald-600 transition-colors">Impact</a>
+                <span class="h-4 w-[1px] bg-slate-200"></span>
+                <button class="bg-[#004225] text-white px-8 py-3 rounded-lg hover:bg-emerald-800 transition-all shadow-md">Portal Login</button>
             </div>
-            <button class="pak-bg-green text-white px-6 py-2 rounded-full font-bold text-sm">Login</button>
         </div>
     </nav>
 
-    <section class="pt-40 pb-20 px-6">
-        <div class="max-w-5xl mx-auto text-center">
-            <span class="bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-xs font-black uppercase tracking-[0.3em] mb-6 inline-block">Ek Pakistani Tehreek</span>
-            <h1 class="text-6xl md:text-8xl font-black leading-none tracking-tighter mb-8 pak-green">
-                Ab Pakistan Mein Koi <br> <span class="text-emerald-500">Berozgar Nahi</span> Rahega.
-            </h1>
-            <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-12">
-                Khazana Jobs aik aisi website nahi hai jo sirf naukri dikhaye—ye hamara khwab hai. Swabi se Karachi tak, har hunar-mand ko uske ilaqay mein izzat ka rozgar dilwana hamara maqsad hai. **Ye platform hamesha free tha, aur hamesha free rahay ga.**
+    <section class="relative pt-32 pb-20 px-6 hero-gradient overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 border border-emerald-500/30 rounded-full mb-8">
+                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></span>
+                    <span class="text-emerald-400 text-[10px] font-black uppercase tracking-widest">100% Free & Independent</span>
+                </div>
+                <h2 class="text-6xl lg:text-8xl font-black text-white leading-none tracking-tighter mb-8">
+                    Empowering <br><span class="italic font-light text-emerald-400">Pakistan's</span> <br> Workforce.
+                </h2>
+                <p class="text-slate-300 text-lg leading-relaxed mb-10 max-w-lg">
+                    A non-profit technological infrastructure designed to bridge the gap between skill and opportunity. Secure, verified, and strictly professional.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#register" class="bg-white text-[#004225] px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl hover:bg-emerald-50 transition-all">Seek Employment</a>
+                    <a href="#post" class="bg-transparent border border-white/20 text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-all">List Opportunity</a>
+                </div>
+            </div>
+            
+            <div class="z-10 bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-[2.5rem] shadow-3xl">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-white font-bold tracking-widest uppercase text-xs">Identity Verification System</h3>
+                    <div class="px-2 py-1 bg-emerald-500 text-white text-[8px] font-black rounded uppercase tracking-tighter italic">Secured</div>
+                </div>
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] text-slate-400 uppercase font-bold ml-2 tracking-widest">Enter CNIC (13 Digits)</label>
+                        <input type="text" id="cnicInput" maxlength="13" placeholder="XXXXXXXXXXXXX" class="w-full bg-white/10 border border-white/10 p-5 rounded-2xl text-white font-mono text-xl focus:outline-none focus:border-emerald-500 transition-all tracking-widest">
+                    </div>
+                    <div id="statusResult" class="hidden p-6 rounded-2xl border-2 border-dashed border-emerald-500/30 bg-emerald-500/10">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white font-black">✓</div>
+                            <div>
+                                <p class="text-emerald-400 text-xs font-black uppercase tracking-widest">Verification Result:</p>
+                                <p id="genderInfo" class="text-white font-bold text-lg uppercase tracking-tighter">Verified Profile</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-slate-500 leading-relaxed text-center px-4">
+                        System automatically detects gender and authenticity via CNIC terminal algorithm. No fraudulent entries permitted.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ecosystem" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24">
+                <h3 class="text-[11px] font-black uppercase tracking-[0.6em] text-emerald-600 mb-4">The Infrastructure</h3>
+                <h2 class="text-5xl font-black text-[#004225] tracking-tighter">Built for National Scale</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-8 text-3xl">🎯</div>
+                    <h4 class="text-2xl font-black text-[#004225] mb-4 tracking-tighter italic">For Job Seekers</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                        <li class="flex items-start gap-2"><span>•</span> Instant local visibility (Tehsil & District level)</li>
+                        <li class="flex items-start gap-2"><span>•</span> Direct contact with employers - no middleman</li>
+                        <li class="flex items-start gap-2"><span>•</span> Verified profile badge to build immediate trust</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-8 text-3xl">💼</div>
+                    <h4 class="text-2xl font-black text-[#004225] mb-4 tracking-tighter italic">For Employers</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                        <li class="flex items-start gap-2"><span>•</span> Unlimited job postings across all categories</li>
+                        <li class="flex items-start gap-2"><span>•</span> Applicant shortlisting via verified gender/location</li>
+                        <li class="flex items-start gap-2"><span>•</span> Zero recruitment cost for SMEs & Factories</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <div class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mb-8 text-3xl">🛡️</div>
+                    <h4 class="text-2xl font-black text-[#004225] mb-4 tracking-tighter italic">Security Shield</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                        <li class="flex items-start gap-2"><span>•</span> Anti-fraud CNIC checksum algorithm</li>
+                        <li class="flex items-start gap-2"><span>•</span> Strict 1-account-per-citizen policy</li>
+                        <li class="flex items-start gap-2"><span>•</span> Real-time data protection and privacy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-32 px-6">
+        <div class="max-w-5xl mx-auto border-l-8 border-[#004225] pl-12 py-10">
+            <h3 class="text-slate-400 font-black uppercase tracking-widest text-[10px] mb-4 italic">The 1995 Initiative</h3>
+            <p class="text-4xl md:text-5xl font-black text-[#004225] leading-tight mb-8">
+                "Khazana Jobs is more than a portal; it is a movement to reclaim the dignity of the Pakistani worker. Our promise is simple: No barriers, no fees, only results."
             </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <button class="pak-bg-green text-white px-10 py-5 rounded-2xl font-black text-lg shadow-2xl hover:scale-105 transition-all">MUJHE KAAM CHAHIYE</button>
-                <button class="bg-white text-slate-900 border-2 border-slate-200 px-10 py-5 rounded-2xl font-black text-lg hover:bg-slate-50 transition-all">MUJHE BANDA CHAHIYE</button>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-[2px] bg-emerald-500"></div>
+                <span class="text-sm font-black uppercase tracking-widest">Abbas Khan, Founder</span>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-white border-y border-slate-100">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-4xl font-black pak-green mb-6">Kyun Khazana Jobs Sab Se Alag Hai?</h2>
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="text-emerald-500 font-black text-2xl">01.</div>
-                            <div>
-                                <h4 class="font-bold text-lg">Smart CNIC Verification</h4>
-                                <p class="text-slate-500">Hum ne aik aisa system banaya hai jo aapke Shanakhti Card ke aakhri digit se aapki tasdeeq karta hai. Koi fraud nahi, koi fake gender profile nahi. Sirf asli log aur asli naukriyan.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="text-emerald-500 font-black text-2xl">02.</div>
-                            <div>
-                                <h4 class="font-bold text-lg">Hyper-Local Connection</h4>
-                                <p class="text-slate-500">Agar aap Swabi mein hain, to aapko Swabi ki jobs nazar ayengi. Hum safar aur waqt zaya kiye baghair aapko aapke pados mein rozgar dilwate hain.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="text-emerald-500 font-black text-2xl">03.</div>
-                            <div>
-                                <h4 class="font-bold text-lg">Hamesha Ke Liye Muft</h4>
-                                <p class="text-slate-500">Na koi registration fee, na koi hidden charges. Ye Allah ki raza aur mulk ki khidmat ke liye banaya gaya platform hai.</p>
-                            </div>
-                        </div>
-                    </div>
+    <footer class="bg-[#00150a] text-white pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-16 mb-20 border-b border-white/5 pb-20">
+            <div class="col-span-2">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-black italic">K</div>
+                    <h2 class="text-xl font-black tracking-tighter uppercase italic">Khazana<span class="text-emerald-500">Jobs</span></h2>
                 </div>
-                <div class="bg-slate-100 p-8 rounded-[3rem] border border-slate-200">
-                    <div class="bg-white p-6 rounded-2xl shadow-xl mb-4">
-                        <span class="text-[10px] font-black uppercase text-emerald-500 tracking-widest">Job Alert!</span>
-                        <h4 class="font-black text-xl pak-green mt-2 italic">Salesman Needed</h4>
-                        <p class="text-xs text-slate-400 font-bold uppercase">Location: Mardan Road, Swabi</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-xl ml-8">
-                        <span class="text-[10px] font-black uppercase text-blue-500 tracking-widest">Success Story</span>
-                        <p class="text-sm font-bold text-slate-700 mt-2 italic">"Mujhe Khazana Jobs se 3 din mein apne ghar ke paas naukri mil gayi. Shukriya Abbas Khan!"</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 pak-bg-green text-white">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight italic">Hum Sab Ne Mil Kar <br> Ise Kamyab Banana Hai.</h2>
-            <p class="text-emerald-100 text-lg mb-12 leading-loose">
-                Ye sirf meri koshish nahi, ye aapka aur mera mil kar uthaya gaya qadam hai. Agar aap aik business owner hain, to yahan jobs post karein taaki kisi ka choolha jal sakay. Agar aap be-rozgar hain, to umeed na harein—Khazana Jobs aapka sath dega. Hamara maqsad dolat nahi, hamara maqsad Khidmat-e-Khalq hai.
-            </p>
-            <div class="p-8 bg-white/10 rounded-3xl border border-white/20">
-                <p class="text-sm font-bold tracking-widest uppercase mb-4">Aapka Aik Share Kisi Ki Zindagi Badal Sakta Hai</p>
-                <div class="flex justify-center gap-6">
-                    <span class="text-2xl cursor-pointer hover:scale-125 transition-all">WhatsApp</span>
-                    <span class="text-2xl cursor-pointer hover:scale-125 transition-all">Facebook</span>
-                    <span class="text-2xl cursor-pointer hover:scale-125 transition-all">LinkedIn</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-slate-900 text-slate-400 py-20 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="col-span-1 md:col-span-2">
-                <div class="flex items-center gap-2 mb-6">
-                    <div class="w-8 h-8 pak-bg-green rounded-lg flex items-center justify-center text-white font-black">K</div>
-                    <span class="text-xl font-black tracking-tighter text-white italic">KHAZANA<span class="text-emerald-500">JOBS</span></span>
-                </div>
-                <p class="text-sm leading-relaxed max-w-sm">
-                    Pakistan ka sab se bara aur mukammal free job network. Hum AI aur Simple Logic ko mila kar har Pakistani ko uski manzil tak pohanchate hain. 
-                    <br><br>
-                    <strong>Developed by Abbas Khan - 1995 Initiative.</strong>
+                <p class="text-slate-400 text-sm leading-loose max-w-sm">
+                    Operating as Pakistan's largest non-profit digital employment infrastructure. We focus on technological empowerment to eradicate unemployment from the grassroots level.
                 </p>
             </div>
             <div>
-                <h4 class="text-white font-black uppercase text-xs tracking-widest mb-6">Links</h4>
-                <ul class="space-y-4 text-sm font-bold">
-                    <li><a href="#" class="hover:text-emerald-500">Jobs Dhoondein</a></li>
-                    <li><a href="#" class="hover:text-emerald-500">Banda Hire Karein</a></li>
-                    <li><a href="#" class="hover:text-emerald-500">Verification Process</a></li>
+                <h5 class="text-[10px] font-black uppercase tracking-widest text-emerald-500 mb-8 italic underline">Governance</h5>
+                <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Charter</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Verification Protocol</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Abuse Reporting</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-black uppercase text-xs tracking-widest mb-6">Contact</h4>
-                <p class="text-sm">Swabi, Khyber Pakhtunkhwa,<br>Pakistan</p>
-                <p class="text-emerald-500 font-bold mt-4 italic">info@khazana.pro</p>
+                <h5 class="text-[10px] font-black uppercase tracking-widest text-emerald-500 mb-8 italic underline">Contact Terminal</h5>
+                <p class="text-xs text-slate-500 leading-relaxed font-bold tracking-widest uppercase">
+                    Central Command: <br> Swabi, KPK, Pakistan <br><br>
+                    Email: infrastructure@khazana.pro
+                </p>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-slate-800 mt-16 pt-8 text-center text-[10px] font-bold uppercase tracking-widest">
-            © 2026 KHAZANA JOBS | MADE WITH ❤️ FOR PAKISTAN | ALL RIGHTS RESERVED
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <p class="text-[10px] font-black text-slate-600 uppercase tracking-[0.4em]">© 2026 KHAZANA INFRASTRUCTURE NETWORK | PK-HQ</p>
+            <div class="flex gap-6 text-slate-600">
+                <span class="text-[10px] font-black hover:text-white cursor-pointer uppercase">LinkedIn</span>
+                <span class="text-[10px] font-black hover:text-white cursor-pointer uppercase">WhatsApp</span>
+            </div>
         </div>
     </footer>
 
+    <script>
+        const cnicInput = document.getElementById('cnicInput');
+        const statusResult = document.getElementById('statusResult');
+        const genderInfo = document.getElementById('genderInfo');
+
+        cnicInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            if (val.length === 13) {
+                const lastDigit = parseInt(val.charAt(12));
+                statusResult.classList.remove('hidden');
+                
+                if (lastDigit % 2 === 0) {
+                    genderInfo.innerText = "Verified: Female Applicant Account";
+                } else {
+                    genderInfo.innerText = "Verified: Male Applicant Account";
+                }
+            } else {
+                statusResult.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>
