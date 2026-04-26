@@ -13,7 +13,8 @@
         }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F8FAFC; color: #064E3B; }
         .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; }
-        .job-card { transition: all 0.3s ease; }
+        .job-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .job-card:hover { transform: translateY(-2px); }
     </style>
 </head>
 <body class="p-5">
@@ -25,7 +26,7 @@
 
     <div class="max-w-md mx-auto mb-10">
         <label class="block text-[10px] font-bold text-emerald-900/50 uppercase tracking-widest mb-2 px-2">Select Your City</label>
-        <select id="cityFilter" onchange="displayJobs()" class="w-full p-4 bg-white border border-emerald-100 rounded-2xl shadow-sm outline-none text-emerald-900 font-bold focus:ring-2 focus:ring-emerald-500 transition-all">
+        <select id="cityFilter" onchange="displayJobs()" class="w-full p-4 bg-white border border-emerald-100 rounded-2xl shadow-sm outline-none text-emerald-900 font-bold focus:ring-2 focus:ring-emerald-500 transition-all cursor-pointer">
             <option value="all">Tamam Shehar (All Cities)</option>
             <option value="swabi">Swabi (صوابی)</option>
             <option value="mardan">Mardan (مردان)</option>
@@ -52,7 +53,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Aapki Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyC3_OdMLA_vKedi78_1isqKTAYGeYYhGfs",
             authDomain: "khazana-830dc.firebaseapp.com",
@@ -67,7 +67,6 @@
         const db = getFirestore(app);
         let allJobs = [];
 
-        // Function to Fetch Jobs from Online Database
         async function fetchJobs() {
             try {
                 const q = query(collection(db, "jobs"), orderBy("createdAt", "desc"));
@@ -83,7 +82,6 @@
             }
         }
 
-        // Function to Display and Filter Jobs
         window.displayJobs = function() {
             const container = document.getElementById('jobsContainer');
             const selectedCity = document.getElementById('cityFilter').value;
@@ -103,14 +101,12 @@
                 noJobsEl.classList.add('hidden');
                 filtered.forEach(job => {
                     container.innerHTML += `
-                        <div class="job-card bg-white p-6 rounded-[35px] shadow-sm border border-emerald-50/50">
-                            <div class="flex justify-between items-start mb-3">
-                                <span class="bg-emerald-100 text-emerald-700 text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">${job.city}</span>
-                                <span class="text-emerald-900/30 text-[9px] font-black uppercase">${job.dateStr || 'Recent'}</span>
+                        <div class="job-card bg-white p-5 rounded-[30px] shadow-sm border border-emerald-50/50 flex justify-between items-center">
+                            <div>
+                                <span class="bg-emerald-50 text-emerald-600 text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">${job.city}</span>
+                                <h3 class="text-lg font-extrabold text-emerald-900 mt-1">${job.title}</h3>
                             </div>
-                            <h3 class="text-xl font-extrabold text-emerald-900 leading-tight">${job.title}</h3>
-                            <p class="nastaleeq text-emerald-700 mt-2 text-lg line-clamp-2">${job.desc}</p>
-                            <a href="job-details.html?id=${job.id}" class="mt-5 block text-center w-full bg-emerald-900 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] active:scale-95 transition-all">
+                            <a href="job-details.html?id=${job.id}" class="bg-emerald-900 text-white px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all shadow-md">
                                 View Details
                             </a>
                         </div>
@@ -119,7 +115,6 @@
             }
         };
 
-        // Initialize
         fetchJobs();
     </script>
 </body>
