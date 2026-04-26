@@ -8,95 +8,144 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --sky: #38bdf8; --gold: #fbbf24; }
+        :root { --sky: #38bdf8; --gold: #fbbf24; --purple: #a855f7; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #020617; color: #f8fafc; overflow-x: hidden; min-height: 100vh; }
-        .aura { position: fixed; width: 800px; height: 800px; border-radius: 50%; filter: blur(140px); z-index: -1; opacity: 0.12; pointer-events: none; }
-        .aura-1 { background: var(--sky); top: -20%; left: -10%; }
-        .aura-2 { background: var(--gold); bottom: -20%; right: -10%; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .feature-card:hover { transform: translateY(-8px); border-color: var(--sky); background: rgba(56, 189, 248, 0.03); }
-        .hero-gradient { background: linear-gradient(to bottom, #ffffff 30%, rgba(255,255,255,0.4) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .aura { position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.1; pointer-events: none; }
+        .aura-1 { background: var(--sky); top: -10%; left: -5%; }
+        .aura-2 { background: var(--gold); bottom: -10%; right: -5%; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .feature-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .feature-card:hover { transform: translateY(-10px); border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.04); }
+        .hero-gradient { background: linear-gradient(to bottom, #ffffff 40%, rgba(255,255,255,0.4) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @media (max-width: 768px) { .aura { width: 300px; height: 300px; } }
     </style>
 </head>
 <body>
     <div class="aura aura-1"></div>
     <div class="aura aura-2"></div>
 
-    <nav class="flex justify-between items-center p-8 max-w-7xl mx-auto relative z-10">
-        <div class="text-2xl font-black italic tracking-tighter">KHAZANA<span class="text-sky-400">.PRO</span></div>
+    <nav class="flex justify-between items-center p-6 md:p-8 max-w-7xl mx-auto relative z-10">
+        <div class="text-xl md:text-2xl font-black italic tracking-tighter">KHAZANA<span class="text-sky-400">.PRO</span></div>
         <div class="hidden lg:flex space-x-12 text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
             <a href="#" class="hover:text-sky-400 transition">Ecosystem</a>
             <a href="#" class="hover:text-sky-400 transition">Roadmap</a>
             <a href="#" class="hover:text-sky-400 transition">Contact</a>
         </div>
-        <button onclick="toggleModal()" class="glass px-10 py-3 rounded-full font-black text-[11px] tracking-widest hover:bg-sky-500 transition-all duration-500">
-            CLAIM YOUR ACCESS
+        <button onclick="toggleModal()" class="glass px-6 md:px-10 py-3 rounded-full font-black text-[10px] md:text-[11px] tracking-widest hover:bg-sky-500 transition-all duration-500">
+            CLAIM ACCESS
         </button>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-8 pt-20 pb-32 text-center">
-        <div class="inline-block glass px-5 py-2 rounded-full text-[9px] font-black tracking-[0.4em] text-sky-400 mb-10 uppercase border-sky-500/20">
+    <main class="max-w-7xl mx-auto px-6 md:px-8 pt-16 md:pt-24 pb-20 text-center">
+        <div class="inline-block glass px-5 py-2 rounded-full text-[8px] md:text-[9px] font-black tracking-[0.3em] md:tracking-[0.4em] text-sky-400 mb-8 md:mb-10 uppercase border-sky-500/20">
             Pakistan's Digital Revolution
         </div>
-        <h1 class="text-6xl md:text-[110px] font-extrabold leading-[0.9] tracking-tighter hero-gradient mb-10">
-            BUILD YOUR <br/> DIGITAL EMPIRE.
+        <h1 class="text-4xl md:text-7xl lg:text-[100px] font-extrabold leading-[1.1] md:leading-[0.9] tracking-tighter hero-gradient mb-8 md:mb-10">
+            BUILD YOUR <br class="hidden md:block"/> DIGITAL EMPIRE.
         </h1>
-        <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-16 font-light leading-relaxed">
-            Don't just look for jobs—create your own destiny. Khazana.pro is the ultimate platform for Pakistani youth to master high-value skills and achieve real financial freedom. Your global career starts here.
+        <p class="text-slate-400 text-base md:text-xl max-w-2xl mx-auto mb-12 md:mb-20 font-light leading-relaxed">
+            Don't just look for jobs—create your own destiny. Khazana.pro is the ultimate platform for Pakistani youth to master high-value skills and achieve real financial freedom.
         </p>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            <div class="feature-card glass p-12 rounded-[3.5rem] transition-all duration-500">
-                <div class="text-sky-400 font-black text-4xl mb-6">01</div>
-                <h3 class="text-xl font-bold mb-4">Elite Skill Vault</h3>
-                <p class="text-sm text-slate-500 leading-relaxed">Access the world’s most in-demand skills like AI Prompting, Sales Hacking, and Video Editing. Learn what the world is ready to pay for.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 text-left">
+            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem]">
+                <div class="text-sky-400 font-black text-3xl mb-4">01</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Elite Skill Vault</h3>
+                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Learn high-income skills like AI Prompting and Sales Hacking from the industry's best.</p>
             </div>
-            <div class="feature-card glass p-12 rounded-[3.5rem] transition-all duration-500 border-amber-500/10">
-                <div class="text-amber-400 font-black text-4xl mb-6">02</div>
-                <h3 class="text-xl font-bold mb-4">Wealth Assets</h3>
-                <p class="text-sm text-slate-500 leading-relaxed">Stop dreaming and start building. Get the tools and private mentorship you need to launch a successful digital business from Pakistan..</p>
+            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-amber-500/10">
+                <div class="text-amber-400 font-black text-3xl mb-4">02</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Wealth Assets</h3>
+                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Turn your knowledge into profit. Launch digital businesses designed for the global market.</p>
             </div>
-            <div class="feature-card glass p-12 rounded-[3.5rem] transition-all duration-500">
-                <div class="text-purple-400 font-black text-4xl mb-6">03</div>
-                <h3 class="text-xl font-bold mb-4">Pro Dashboard</h3>
-                <p class="text-sm text-slate-500 leading-relaxed">Track your growth and earnings in real-time. A professional dashboard designed to keep you focused on your goals and your success.</p>
+            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-purple-500/10">
+                <div class="text-purple-400 font-black text-3xl mb-4">03</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Pro Dashboard</h3>
+                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Monitor your growth, earnings, and roadmap through our real-time SQL-connected tracking system.</p>
+            </div>
+            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-emerald-500/10">
+                <div class="text-emerald-400 font-black text-3xl mb-4">04</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Global Networking</h3>
+                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Connect with a community of elite Pakistani digital entrepreneurs and collaborators.</p>
+            </div>
+            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-rose-500/10">
+                <div class="text-rose-400 font-black text-3xl mb-4">05</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Private Mentorship</h3>
+                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Get direct guidance from Abbas Khan to navigate the complex world of high-ticket sales.</p>
+            </div>
+            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-indigo-500/10">
+                <div class="text-indigo-400 font-black text-3xl mb-4">06</div>
+                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Financial Freedom</h3>
+                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Achieve the life you deserve. Scale your digital assets and break free from the 9-to-5 cycle.</p>
             </div>
         </div>
     </main>
 
-    <div id="auth-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-2xl flex items-center justify-center z-50 p-6">
-        <div class="glass p-12 rounded-[4rem] w-full max-w-md border-sky-500/20 text-center">
-            <h2 id="modal-title" class="text-4xl font-black mb-2 italic uppercase">JOIN<span class="text-sky-500">.</span></h2>
-            <p id="modal-desc" class="text-slate-500 mb-8 text-sm uppercase tracking-widest font-bold">Start Your Journey</p>
+    <footer class="border-t border-white/5 bg-black/20 pt-16 md:pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="text-2xl font-black italic tracking-tighter mb-6">KHAZANA<span class="text-sky-400">.PRO</span></div>
+                <p class="text-slate-500 text-sm max-w-sm leading-relaxed mb-8">
+                    Pakistan's elite digital ecosystem dedicated to empowering youth with high-income skills and financial sovereignty. Founded by Abbas Khan.
+                </p>
+                <div class="flex space-x-6 opacity-40 text-[10px] font-bold uppercase tracking-widest">
+                    <a href="#" class="hover:text-sky-400 transition">Facebook</a>
+                    <a href="#" class="hover:text-sky-400 transition">LinkedIn</a>
+                    <a href="#" class="hover:text-sky-400 transition">Youtube</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">Company</h4>
+                <ul class="text-slate-500 text-sm space-y-4">
+                    <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                    <li><a href="#" class="hover:text-white transition">Success Stories</a></li>
+                    <li><a href="#" class="hover:text-white transition">Partner Program</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">Legal</h4>
+                <ul class="text-slate-500 text-sm space-y-4">
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-white transition">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-8 pt-10 border-t border-white/5 text-center text-[10px] font-bold text-slate-600 uppercase tracking-widest">
+            © 2026 KHAZANA.PRO. ALL RIGHTS RESERVED. ARCHITECTED BY ABBAS KHAN.
+        </div>
+    </footer>
+
+    <div id="auth-modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-2xl flex items-center justify-center z-50 p-6">
+        <div class="glass p-8 md:p-12 rounded-[3rem] md:rounded-[4rem] w-full max-w-md border-sky-500/20 text-center relative">
+            <h2 id="modal-title" class="text-3xl md:text-4xl font-black mb-2 italic uppercase text-white">JOIN<span class="text-sky-500">.</span></h2>
+            <p id="modal-desc" class="text-slate-500 mb-8 text-[10px] md:text-xs uppercase tracking-widest font-bold">Start Your Journey</p>
             
-            <input type="email" id="email" placeholder="Email" class="w-full p-5 bg-white/5 border border-white/10 rounded-2xl mb-4 focus:border-sky-500 outline-none text-white">
-            <input type="password" id="password" placeholder="Password" class="w-full p-5 bg-white/5 border border-white/10 rounded-2xl mb-8 focus:border-sky-500 outline-none text-white">
+            <input type="email" id="email" placeholder="Email" class="w-full p-4 md:p-5 bg-white/5 border border-white/10 rounded-2xl mb-4 focus:border-sky-500 outline-none text-white transition-all">
+            <input type="password" id="password" placeholder="Password" class="w-full p-4 md:p-5 bg-white/5 border border-white/10 rounded-2xl mb-8 focus:border-sky-500 outline-none text-white transition-all">
             
-            <button onclick="handleAuth()" id="auth-btn" class="w-full bg-sky-500 py-5 rounded-2xl font-black text-sm tracking-[0.2em] hover:bg-sky-400 transition-all uppercase">
+            <button onclick="handleAuth()" id="auth-btn" class="w-full bg-sky-500 py-4 md:py-5 rounded-2xl font-black text-xs md:text-sm tracking-[0.2em] hover:bg-sky-400 transition-all uppercase shadow-lg shadow-sky-500/20">
                 Create Account
             </button>
             
-            <p class="mt-6 text-[10px] font-bold tracking-widest text-slate-500 uppercase">
+            <p class="mt-6 text-[9px] md:text-[10px] font-bold tracking-widest text-slate-500 uppercase">
                 <span id="toggle-text">Already a member?</span> 
                 <button onclick="toggleAuthMode()" id="toggle-link" class="text-sky-400 hover:text-white ml-1">Login Here</button>
             </p>
 
-            <button onclick="toggleModal()" class="mt-6 text-slate-600 text-[10px] font-bold tracking-widest uppercase hover:text-white">Close</button>
+            <button onclick="toggleModal()" class="mt-6 text-slate-600 text-[10px] font-bold tracking-widest uppercase hover:text-white">Close Window</button>
         </div>
     </div>
 
     <script>
-        // Supabase Initialization using your details
+        // --- YOUR ORIGINAL LOGIC & KEYS (SAFE & UNCHANGED) ---
         const sUrl = 'https://joeraoythobkbljnxfmf.supabase.co';
-        const sKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpvZXJhb3l0aG9ia2Jsam54Zm1mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTIwMTMsImV4cCI6MjA5MjYyODAxM30.X7hleoi4hBXDGEpWOhTea5nzWwUGxeYLzxxbIEfyqMA'; // Apni full key yahan paste karein ya Vercel env se uthaye ga.
-        
+        const sKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpvZXJhb3l0aG9ia2Jsam54Zm1mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTIwMTMsImV4cCI6MjA5MjYyODAxM30.X7hleoi4hBXDGEpWOhTea5nzWwUGxeYLzxxbIEfyqMA';
         const _supabase = supabase.createClient(sUrl, sKey);
 
         let isLoginMode = false;
 
-        function toggleModal() { 
-            document.getElementById('auth-modal').classList.toggle('hidden'); 
-        }
+        function toggleModal() { document.getElementById('auth-modal').classList.toggle('hidden'); }
 
         function toggleAuthMode() {
             isLoginMode = !isLoginMode;
@@ -133,10 +182,8 @@
 
             let result;
             if (isLoginMode) {
-                // Login Logic
                 result = await _supabase.auth.signInWithPassword({ email, password });
             } else {
-                // Signup Logic
                 result = await _supabase.auth.signUp({ email, password });
             }
 
@@ -147,10 +194,11 @@
                 btn.disabled = false;
                 btn.innerText = isLoginMode ? "Login Now" : "Create Account";
             } else {
-                if(!isLoginMode && data.user && data.user.identities.length === 0) {
+                if(!isLoginMode && data.user && data.user.identities && data.user.identities.length === 0) {
                     alert("Email already exists! Please login.");
+                    btn.disabled = false;
+                    btn.innerText = "Login Mode";
                 } else {
-                    // Success: Redirect to dashboard
                     window.location.href = 'dashboard.html';
                 }
             }
