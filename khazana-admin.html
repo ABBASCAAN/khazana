@@ -9,7 +9,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Aapka Firebase Config jo screenshot mein tha
+        // Aapka Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyC3_OdMLA_vKedi78_1isqKTAYGeYYhGfs",
             authDomain: "khazana-830dc.firebaseapp.com",
@@ -27,13 +27,20 @@
         window.postJob = async () => {
             const title = document.getElementById('title').value;
             const city = document.getElementById('city').value;
+            const phone = document.getElementById('phone').value; // Naya Input
             const desc = document.getElementById('desc').value;
 
-            if(!title || !desc) return alert("Meharbani karke sab khane bharein!");
+            if(!title || !desc || !phone) return alert("Meharbani karke sab khane bharein, phone number zaroori hai!");
+
+            // Phone number format check (Optional: 92 se shuru ho to behtar hai)
+            if(phone.length < 10) return alert("Meharbani karke sahi WhatsApp number likhein!");
 
             try {
                 await addDoc(collection(db, "jobs"), {
-                    title, city, desc, 
+                    title, 
+                    city, 
+                    phone, // Database mein phone save ho raha hai
+                    desc, 
                     createdAt: serverTimestamp(),
                     dateStr: new Date().toLocaleDateString()
                 });
@@ -55,9 +62,9 @@
                     <div class="bg-white p-4 mb-3 rounded-2xl shadow-sm border flex justify-between items-center">
                         <div>
                             <p class="font-black text-emerald-900">${job.title}</p>
-                            <p class="text-[10px] text-gray-400 uppercase font-bold">${job.city}</p>
+                            <p class="text-[10px] text-gray-400 uppercase font-bold">${job.city} | ${job.phone || 'No Number'}</p>
                         </div>
-                        <button onclick="deleteJob('${docSnap.id}')" class="bg-red-50 text-red-500 p-2 px-4 rounded-xl text-[10px] font-black">DELETE</button>
+                        <button onclick="deleteJob('${docSnap.id}')" class="bg-red-50 text-red-500 p-2 px-4 rounded-xl text-[10px] font-black hover:bg-red-100 transition-colors">DELETE</button>
                     </div>`;
             });
         };
@@ -71,6 +78,7 @@
 
         function resetForm() {
             document.getElementById('title').value = '';
+            document.getElementById('phone').value = '';
             document.getElementById('desc').value = '';
         }
 
@@ -80,18 +88,26 @@
 </head>
 <body class="p-6">
     <div class="max-w-md mx-auto">
-        <h1 class="text-2xl font-black text-emerald-900 mb-6 text-center">KHAZANA ADMIN</h1>
+        <h1 class="text-2xl font-black text-emerald-900 mb-6 text-center uppercase tracking-tighter">Khazana Control Panel</h1>
+        
         <div class="bg-white p-6 rounded-[35px] shadow-xl border border-white mb-8">
-            <input type="text" id="title" placeholder="Job Title (e.g. Salesman)" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none">
-            <select id="city" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none font-bold text-emerald-800">
+            <input type="text" id="title" placeholder="Job Title (e.g. Salesman)" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none focus:ring-2 focus:ring-emerald-500 transition-all">
+            
+            <select id="city" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none font-bold text-emerald-800 focus:ring-2 focus:ring-emerald-500 transition-all">
                 <option value="swabi">Swabi</option>
                 <option value="mardan">Mardan</option>
                 <option value="peshawar">Peshawar</option>
                 <option value="nowshera">Nowshera</option>
             </select>
-            <textarea id="desc" placeholder="Job Details (Urdu/English)..." rows="5" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none"></textarea>
-            <button onclick="postJob()" class="w-full bg-emerald-900 text-white p-5 rounded-2xl font-black text-xs tracking-widest uppercase">Go Live Now</button>
+
+            <input type="number" id="phone" placeholder="WhatsApp Number (e.g. 923123456789)" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none focus:ring-2 focus:ring-emerald-500 transition-all">
+            
+            <textarea id="desc" placeholder="Job Details (Urdu/English)..." rows="5" class="w-full mb-4 p-4 bg-gray-50 rounded-2xl outline-none border-none focus:ring-2 focus:ring-emerald-500 transition-all"></textarea>
+            
+            <button onclick="postJob()" class="w-full bg-emerald-900 text-white p-5 rounded-2xl font-black text-xs tracking-widest uppercase hover:bg-emerald-800 active:scale-95 transition-all shadow-lg">Go Live Now</button>
         </div>
+
+        <h2 class="text-[10px] font-black text-emerald-900/30 uppercase tracking-[0.3em] mb-4 px-4 text-center">Live Postings</h2>
         <div id="jobList"></div>
     </div>
 </body>
