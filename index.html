@@ -41,6 +41,7 @@
             border-radius: 24px; height: 80px; display: flex; align-items: center; justify-content: center;
             font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; 
             transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.03); z-index: 1; cursor: pointer;
+            text-decoration: none;
         }
         .btn-eng:active { transform: scale(0.96); background: var(--mint-glow); }
 
@@ -78,7 +79,7 @@
 </head>
 <body>
 
-    <div id="visionModal" class="modal-overlay" onclick="closeOnOutside(event, 'visionModal')" style="display: flex; opacity: 1;">
+    <div id="visionModal" class="modal-overlay" onclick="closeOnOutside(event, 'visionModal')">
         <div class="modal-box space-y-4" onclick="event.stopPropagation()">
             <div class="close-btn" onclick="closeModal('visionModal')">✕</div>
             <div class="space-y-1">
@@ -134,7 +135,7 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4 pb-12 z-10">
-            <a href="jobs.html" class="btn-eng text-emerald-700 flex items-center justify-center no-underline">Find Job</a>
+            <a href="jobs.html" class="btn-eng text-emerald-700 flex items-center justify-center">Find Job</a>
             <div onclick="openModal('postJobModal')" class="btn-eng text-emerald-700">Post Job</div>
             <div onclick="openModal('visionModal')" class="btn-eng !h-12">About</div>
             <div onclick="openModal('contactModal')" class="btn-eng !h-12">Contact</div>
@@ -142,16 +143,27 @@
     </div>
 
     <script>
+        // First-time popup logic
+        window.onload = function() {
+            const hasSeenPopup = localStorage.getItem('khazana_popup_seen');
+            if (!hasSeenPopup) {
+                openModal('visionModal');
+                localStorage.setItem('khazana_popup_seen', 'true');
+            }
+        };
+
         function openModal(id) {
             const modal = document.getElementById(id);
             modal.style.display = 'flex';
             setTimeout(() => modal.style.opacity = '1', 10);
         }
+        
         function closeModal(id) {
             const modal = document.getElementById(id);
             modal.style.opacity = '0';
             setTimeout(() => modal.style.display = 'none', 400);
         }
+        
         function closeOnOutside(event, id) {
             if (event.target === document.getElementById(id)) { closeModal(id); }
         }
