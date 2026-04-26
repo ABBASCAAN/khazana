@@ -6,51 +6,100 @@
     <title>Job Details | Khazana</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @font-face { font-family: 'Jameel Noori Nastaleeq'; src: url('https://font.paksign.com/fonts/Jameel-Noori-Nastaleeq.ttf') format('truetype'); }
-        .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; line-height: 2; }
+        @font-face {
+            font-family: 'Jameel Noori Nastaleeq';
+            src: url('https://font.paksign.com/fonts/Jameel-Noori-Nastaleeq.ttf') format('truetype');
+        }
+        body { background: #F8FAFC; }
+        .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; line-height: 1.8; }
     </style>
 </head>
-<body class="bg-slate-50 p-6">
-    <div id="content" class="max-w-md mx-auto bg-white rounded-[40px] p-8 shadow-2xl min-h-[50vh] flex flex-col justify-between">
-        <p class="text-center animate-pulse opacity-30">Loading Details...</p>
+<body class="p-6">
+
+    <div id="detailsCard" class="max-w-md mx-auto bg-white rounded-[40px] p-8 shadow-xl min-h-[400px] flex flex-col justify-between border border-emerald-50">
+        <div id="loader" class="text-center py-20">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-900 mx-auto mb-4"></div>
+            <p class="text-[10px] font-black text-emerald-900/20 uppercase tracking-widest">Fetching Details...</p>
+        </div>
+
+        <div id="jobData" class="hidden">
+            <div>
+                <span id="jobCity" class="bg-emerald-100 text-emerald-700 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest"></span>
+                <h1 id="jobTitle" class="text-3xl font-black text-emerald-900 mt-4 mb-6 leading-tight"></h1>
+                <div class="h-1 w-12 bg-emerald-100 mb-8 rounded-full"></div>
+                <p id="jobDesc" class="nastaleeq text-xl text-emerald-800 text-right mb-10"></p>
+            </div>
+
+            <div class="space-y-4">
+                <a id="waLink" href="#" class="block text-center bg-[#128C7E] text-white p-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg active:scale-95 transition-all">
+                    Apply via WhatsApp
+                </a>
+                
+                <button onclick="window.location.href='jobs.html'" class="w-full text-[10px] font-black text-emerald-900/30 uppercase tracking-[0.2em] py-2">
+                    ← Back to Jobs
+                </button>
+            </div>
+        </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        const firebaseConfig = { /* APNA CONFIG YAHAN DALAIN */ };
+        // --- Aapka Firebase Config (Yahan Zaroori Hai) ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3_OdMLA_vKedi78_1isqKTAYGeYYhGfs",
+            authDomain: "khazana-830dc.firebaseapp.com",
+            projectId: "khazana-830dc",
+            storageBucket: "khazana-830dc.firebasestorage.app",
+            messagingSenderId: "475195159792",
+            appId: "1:475195159792:web:f676958613562e5d10fe35",
+            measurementId: "G-HC5WMRT7NW"
+        };
+
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        async function loadDetail() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const jobId = urlParams.get('id');
-            if (!jobId) return;
+        async function getJobDetails() {
+            // URL se Job ID nikalna
+            const params = new URLSearchParams(window.location.search);
+            const jobId = params.get('id');
 
-            const docRef = doc(db, "jobs", jobId);
-            const docSnap = await getDoc(docRef);
+            if (!jobId) {
+                alert("Job ID nahi mili!");
+                return;
+            }
 
-            if (docSnap.exists()) {
-                const job = docSnap.data();
-                document.getElementById('content').innerHTML = `
-                    <div>
-                        <span class="text-[10px] font-black text-emerald-500 uppercase tracking-widest">${job.city}</span>
-                        <h1 class="text-3xl font-black text-emerald-900 mt-2 mb-6">${job.title}</h1>
-                        <div class="h-1 w-10 bg-emerald-100 mb-6"></div>
-                        <p class="nastaleeq text-xl text-emerald-800 text-right">${job.desc}</p>
-                    </div>
-                    <div class="mt-10">
-                        <a href="https://api.whatsapp.com/send?phone=${job.phone}&text=Assalamoalaikum! Mujhay Khazana Jobs par aapki post '${job.title}' mein dilchaspi hai." 
-                           class="block text-center bg-[#128C7E] text-white p-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg active:scale-95 transition-all">
-                           Apply via WhatsApp
-                        </a>
-                        <button onclick="history.back()" class="w-full mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-tighter">← Back to List</button>
-                    </div>
-                `;
+            try {
+                const docRef = doc(db, "jobs", jobId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const job = docSnap.data();
+                    
+                    // Data ko page par set karna
+                    document.getElementById('jobTitle').innerText = job.title;
+                    document.getElementById('jobCity').innerText = job.city;
+                    document.getElementById('jobDesc').innerText = job.desc;
+                    
+                    // WhatsApp Link banana
+                    const waPhone = job.phone || "923000000000"; // Agar number na ho to default
+                    const waText = window.encodeURIComponent(`Assalamoalaikum! Mujhay Khazana Portal par aapki job post '${job.title}' mein dilchaspi hai.`);
+                    document.getElementById('waLink').href = `https://wa.me/${waPhone}?text=${waText}`;
+
+                    // Loader hatana aur data dikhana
+                    document.getElementById('loader').classList.add('hidden');
+                    document.getElementById('jobData').classList.remove('hidden');
+                } else {
+                    document.getElementById('loader').innerHTML = "Job not found!";
+                }
+            } catch (error) {
+                console.error(error);
+                document.getElementById('loader').innerHTML = "Error loading data!";
             }
         }
-        loadDetail();
+
+        getJobDetails();
     </script>
 </body>
 </html>
