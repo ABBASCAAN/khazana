@@ -13,18 +13,19 @@
         }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F8FAFC; color: #064E3B; }
         .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; }
+        .job-card { transition: all 0.3s ease; }
     </style>
 </head>
 <body class="p-5">
 
     <div class="text-center mb-8">
-        <h1 class="text-2xl font-black text-emerald-900 tracking-tighter">AVAILABLE OPPORTUNITIES</h1>
+        <h1 class="text-2xl font-black text-emerald-900 tracking-tighter uppercase">Available Opportunities</h1>
         <p class="nastaleeq text-lg text-emerald-600 mt-2">اپنے شہر کے مطابق نوکریاں تلاش کریں</p>
     </div>
 
     <div class="max-w-md mx-auto mb-10">
         <label class="block text-[10px] font-bold text-emerald-900/50 uppercase tracking-widest mb-2 px-2">Select Your City</label>
-        <select id="cityFilter" onchange="filterJobs()" class="w-full p-4 bg-white border border-emerald-100 rounded-2xl shadow-sm outline-none text-emerald-900 font-bold focus:ring-2 focus:ring-emerald-500 transition-all">
+        <select id="cityFilter" onchange="displayJobs()" class="w-full p-4 bg-white border border-emerald-100 rounded-2xl shadow-sm outline-none text-emerald-900 font-bold focus:ring-2 focus:ring-emerald-500 transition-all">
             <option value="all">Tamam Shehar (All Cities)</option>
             <option value="swabi">Swabi (صوابی)</option>
             <option value="mardan">Mardan (مردان)</option>
@@ -34,65 +35,92 @@
     </div>
 
     <div id="jobsContainer" class="space-y-4 max-w-2xl mx-auto">
-        
-        <div class="job-card bg-white p-5 rounded-3xl shadow-sm border border-emerald-50/50" data-city="swabi">
-            <div class="flex justify-between items-start mb-3">
-                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-black px-3 py-1 rounded-full uppercase">Swabi</span>
-                <span class="text-emerald-900/30 text-[10px] font-bold uppercase">Full Time</span>
-            </div>
-            <h3 class="text-lg font-extrabold text-emerald-900">Field Sales Representative</h3>
-            <p class="nastaleeq text-emerald-700 mt-1">ہمارے صوابی یونٹ کے لیے محنتی سیلز ریپریزنٹیٹو کی ضرورت ہے۔</p>
-            <button class="mt-4 w-full bg-emerald-900 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest active:scale-95 transition-all">Apply Now</button>
+        <div id="loading" class="text-center py-10">
+            <p class="text-xs font-bold text-emerald-900/30 animate-pulse tracking-widest">CONNECTING TO KHAZANA CLOUD...</p>
         </div>
+    </div>
 
-        <div class="job-card bg-white p-5 rounded-3xl shadow-sm border border-emerald-50/50" data-city="mardan">
-            <div class="flex justify-between items-start mb-3">
-                <span class="bg-blue-100 text-blue-700 text-[10px] font-black px-3 py-1 rounded-full uppercase">Mardan</span>
-                <span class="text-emerald-900/30 text-[10px] font-bold uppercase">Contract</span>
-            </div>
-            <h3 class="text-lg font-extrabold text-emerald-900">Area Coordinator</h3>
-            <p class="nastaleeq text-emerald-700 mt-1">مردان ڈسٹرکٹ کے لیے تجربہ کار کوآرڈینیٹر درکار ہے۔</p>
-            <button class="mt-4 w-full bg-emerald-900 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest active:scale-95 transition-all">Apply Now</button>
-        </div>
-
-        <div class="job-card bg-white p-5 rounded-3xl shadow-sm border border-emerald-50/50" data-city="peshawar">
-            <div class="flex justify-between items-start mb-3">
-                <span class="bg-purple-100 text-purple-700 text-[10px] font-black px-3 py-1 rounded-full uppercase">Peshawar</span>
-                <span class="text-emerald-900/30 text-[10px] font-bold uppercase">Urgent</span>
-            </div>
-            <h3 class="text-lg font-extrabold text-emerald-900">Delivery Supervisor</h3>
-            <p class="nastaleeq text-emerald-700 mt-1">پشاور سٹی کے لیے فوری ڈیلیوری سپروائزر کی ضرورت ہے۔</p>
-            <button class="mt-4 w-full bg-emerald-900 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest active:scale-95 transition-all">Apply Now</button>
-        </div>
-
-        <div id="noJobs" class="hidden text-center py-10">
-            <p class="nastaleeq text-emerald-900/40 text-xl">اس شہر میں ابھی کوئی نوکری دستیاب نہیں ہے۔</p>
-        </div>
-
+    <div id="noJobs" class="hidden text-center py-10">
+        <p class="nastaleeq text-emerald-900/40 text-xl">اس شہر میں ابھی کوئی نوکری دستیاب نہیں ہے۔</p>
     </div>
 
     <div class="text-center mt-10">
         <a href="index.html" class="text-[10px] font-black text-emerald-900/30 uppercase tracking-[0.3em] hover:text-emerald-500 transition-colors">← Back to Portal</a>
     </div>
 
-    <script>
-        function filterJobs() {
-            const selectedCity = document.getElementById('cityFilter').value;
-            const cards = document.getElementsByClassName('job-card');
-            let found = false;
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-            for (let card of cards) {
-                if (selectedCity === 'all' || card.getAttribute('data-city') === selectedCity) {
-                    card.style.display = "block";
-                    found = true;
-                } else {
-                    card.style.display = "none";
-                }
+        // Aapki Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3_OdMLA_vKedi78_1isqKTAYGeYYhGfs",
+            authDomain: "khazana-830dc.firebaseapp.com",
+            projectId: "khazana-830dc",
+            storageBucket: "khazana-830dc.firebasestorage.app",
+            messagingSenderId: "475195159792",
+            appId: "1:475195159792:web:f676958613562e5d10fe35",
+            measurementId: "G-HC5WMRT7NW"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        let allJobs = [];
+
+        // Function to Fetch Jobs from Online Database
+        async function fetchJobs() {
+            try {
+                const q = query(collection(db, "jobs"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+                allJobs = [];
+                querySnapshot.forEach((doc) => {
+                    allJobs.push({ id: doc.id, ...doc.data() });
+                });
+                displayJobs();
+            } catch (error) {
+                console.error("Error fetching jobs: ", error);
+                document.getElementById('loading').innerHTML = "Connection Error. Please Refresh.";
             }
-
-            // Show/Hide "No Jobs" message
-            document.getElementById('noJobs').classList.toggle('hidden', found);
         }
+
+        // Function to Display and Filter Jobs
+        window.displayJobs = function() {
+            const container = document.getElementById('jobsContainer');
+            const selectedCity = document.getElementById('cityFilter').value;
+            const noJobsEl = document.getElementById('noJobs');
+            const loadingEl = document.getElementById('loading');
+            
+            if (loadingEl) loadingEl.style.display = 'none';
+            container.innerHTML = "";
+            
+            const filtered = allJobs.filter(job => 
+                selectedCity === 'all' || job.city.toLowerCase() === selectedCity.toLowerCase()
+            );
+
+            if (filtered.length === 0) {
+                noJobsEl.classList.remove('hidden');
+            } else {
+                noJobsEl.classList.add('hidden');
+                filtered.forEach(job => {
+                    container.innerHTML += `
+                        <div class="job-card bg-white p-6 rounded-[35px] shadow-sm border border-emerald-50/50">
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="bg-emerald-100 text-emerald-700 text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">${job.city}</span>
+                                <span class="text-emerald-900/30 text-[9px] font-black uppercase">${job.dateStr || 'Recent'}</span>
+                            </div>
+                            <h3 class="text-xl font-extrabold text-emerald-900 leading-tight">${job.title}</h3>
+                            <p class="nastaleeq text-emerald-700 mt-2 text-lg line-clamp-2">${job.desc}</p>
+                            <a href="job-details.html?id=${job.id}" class="mt-5 block text-center w-full bg-emerald-900 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] active:scale-95 transition-all">
+                                View Details
+                            </a>
+                        </div>
+                    `;
+                });
+            }
+        };
+
+        // Initialize
+        fetchJobs();
     </script>
 </body>
 </html>
