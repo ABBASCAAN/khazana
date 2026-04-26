@@ -26,13 +26,12 @@
             font-size: 15rem; font-weight: 900; color: rgba(6, 78, 59, 0.03); z-index: -1;
         }
 
-        /* Description Styling: Compact & Professional */
         .desc-box {
             background: rgba(255, 255, 255, 0.5);
             border-radius: 24px;
             padding: 18px;
-            max-height: 250px; /* Lamba hone se rokega */
-            overflow-y: auto; /* Agar lamba ho to scroll ho jaye */
+            max-height: 250px;
+            overflow-y: auto;
             border: 1px solid rgba(255,255,255,0.8);
         }
 
@@ -40,7 +39,7 @@
             font-family: 'Jameel Noori Nastaleeq', serif; 
             line-height: 1.6; 
             text-align: left;
-            font-size: 17px; /* Thoda chota font taake compact lagay */
+            font-size: 17px;
         }
 
         .details-card {
@@ -64,10 +63,29 @@
             display: block;
             box-shadow: 0 8px 15px rgba(6, 78, 59, 0.15);
             transition: 0.3s;
+            text-decoration: none;
         }
-        .fast-apply-btn:active { transform: scale(0.95); opacity: 0.9; }
+        
+        /* New Back Button Style */
+        .secondary-btn {
+            background: white;
+            color: var(--deep-green);
+            border: 1px solid rgba(6, 78, 59, 0.1);
+            padding: 14px;
+            border-radius: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 9px;
+            text-align: center;
+            display: block;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            text-decoration: none;
+        }
+        
+        .fast-apply-btn:active, .secondary-btn:active { transform: scale(0.95); opacity: 0.9; }
 
-        /* Custom Scrollbar for Pro look */
         .desc-box::-webkit-scrollbar { width: 4px; }
         .desc-box::-webkit-scrollbar-thumb { background: rgba(6, 78, 59, 0.1); border-radius: 10px; }
     </style>
@@ -101,12 +119,12 @@
                     <p id="jobDesc" class="nastaleeq text-emerald-800"></p>
                 </div>
 
-                <div class="mt-auto space-y-4">
+                <div class="mt-auto space-y-3">
                     <a id="waLinkBottom" href="#" class="fast-apply-btn">Fast APPLY</a>
                     
-                    <button onclick="window.location.href='jobs.html'" class="w-full text-[8px] font-black text-emerald-900/20 uppercase tracking-[0.4em] py-2">
+                    <a href="jobs.html" class="secondary-btn">
                         ← Back to Opportunities
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
