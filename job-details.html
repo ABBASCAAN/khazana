@@ -26,7 +26,22 @@
             font-size: 15rem; font-weight: 900; color: rgba(6, 78, 59, 0.03); z-index: -1;
         }
 
-        .nastaleeq { font-family: 'Jameel Noori Nastaleeq', serif; line-height: 1.8; text-align: left; }
+        /* Description Styling: Compact & Professional */
+        .desc-box {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 18px;
+            max-height: 250px; /* Lamba hone se rokega */
+            overflow-y: auto; /* Agar lamba ho to scroll ho jaye */
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .nastaleeq { 
+            font-family: 'Jameel Noori Nastaleeq', serif; 
+            line-height: 1.6; 
+            text-align: left;
+            font-size: 17px; /* Thoda chota font taake compact lagay */
+        }
 
         .details-card {
             background: rgba(255, 255, 255, 0.8);
@@ -39,18 +54,22 @@
         .fast-apply-btn {
             background: var(--deep-green);
             color: white;
-            padding: 18px;
-            border-radius: 22px;
+            padding: 16px;
+            border-radius: 20px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-size: 10px;
+            letter-spacing: 0.15em;
+            font-size: 9px;
             text-align: center;
             display: block;
-            box-shadow: 0 10px 20px rgba(6, 78, 59, 0.2);
+            box-shadow: 0 8px 15px rgba(6, 78, 59, 0.15);
             transition: 0.3s;
         }
         .fast-apply-btn:active { transform: scale(0.95); opacity: 0.9; }
+
+        /* Custom Scrollbar for Pro look */
+        .desc-box::-webkit-scrollbar { width: 4px; }
+        .desc-box::-webkit-scrollbar-thumb { background: rgba(6, 78, 59, 0.1); border-radius: 10px; }
     </style>
 </head>
 <body class="p-6">
@@ -61,7 +80,7 @@
             <p class="text-[7px] font-bold text-emerald-900/30 tracking-[0.5em] mt-1 uppercase">Official Recruitment Page</p>
         </header>
 
-        <div id="detailsCard" class="details-card p-8 min-h-[500px] flex flex-col">
+        <div id="detailsCard" class="details-card p-7 min-h-[450px] flex flex-col">
             
             <div id="loader" class="text-center py-20 my-auto">
                 <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-emerald-900 mx-auto mb-4"></div>
@@ -70,22 +89,22 @@
 
             <div id="jobData" class="hidden flex-1 flex flex-col">
                 
-                <a id="waLinkTop" href="#" class="fast-apply-btn mb-8">Fast APPLY</a>
+                <a id="waLinkTop" href="#" class="fast-apply-btn mb-6">Fast APPLY</a>
 
-                <div class="mb-6">
-                    <span id="jobCity" class="bg-emerald-50 text-emerald-600 text-[8px] font-black px-3 py-1 rounded-lg uppercase tracking-widest border border-emerald-100"></span>
-                    <h2 id="jobTitle" class="text-2xl font-black text-emerald-900 mt-4 tracking-tight leading-tight"></h2>
-                    <div class="h-1 w-10 bg-emerald-500/20 mt-4 rounded-full"></div>
+                <div class="mb-5">
+                    <span id="jobCity" class="bg-emerald-50 text-emerald-600 text-[7px] font-black px-3 py-1 rounded-lg uppercase tracking-widest border border-emerald-100"></span>
+                    <h2 id="jobTitle" class="text-xl font-black text-emerald-900 mt-3 tracking-tight leading-tight"></h2>
+                    <div class="h-1 w-8 bg-emerald-500/20 mt-3 rounded-full"></div>
                 </div>
 
-                <div class="bg-white/40 rounded-3xl p-6 mb-8 border border-white/50">
-                    <p id="jobDesc" class="nastaleeq text-[19px] text-emerald-800"></p>
+                <div class="desc-box mb-6 shadow-inner">
+                    <p id="jobDesc" class="nastaleeq text-emerald-800"></p>
                 </div>
 
-                <div class="mt-auto space-y-6">
+                <div class="mt-auto space-y-4">
                     <a id="waLinkBottom" href="#" class="fast-apply-btn">Fast APPLY</a>
                     
-                    <button onclick="window.location.href='jobs.html'" class="w-full text-[9px] font-black text-emerald-900/30 uppercase tracking-[0.4em] py-2 transition-all hover:text-emerald-500">
+                    <button onclick="window.location.href='jobs.html'" class="w-full text-[8px] font-black text-emerald-900/20 uppercase tracking-[0.4em] py-2">
                         ← Back to Opportunities
                     </button>
                 </div>
@@ -114,10 +133,7 @@
             const params = new URLSearchParams(window.location.search);
             const jobId = params.get('id');
 
-            if (!jobId) {
-                alert("Critical Error: Job ID Missing.");
-                return;
-            }
+            if (!jobId) return;
 
             try {
                 const docRef = doc(db, "jobs", jobId);
@@ -133,22 +149,17 @@
                     const waPhone = job.phone || "923000000000";
                     const waText = window.encodeURIComponent(`Assalamoalaikum! I saw the '${job.title}' posting on Khazana Jobs and I want to apply.`);
                     
-                    // Linking both Fast Apply buttons
                     const fullLink = `https://wa.me/${waPhone}?text=${waText}`;
                     document.getElementById('waLinkTop').href = fullLink;
                     document.getElementById('waLinkBottom').href = fullLink;
 
                     document.getElementById('loader').classList.add('hidden');
                     document.getElementById('jobData').classList.remove('hidden');
-                } else {
-                    document.getElementById('loader').innerHTML = "Post Expired or Removed.";
                 }
             } catch (error) {
                 console.error(error);
-                document.getElementById('loader').innerHTML = "Cloud Sync Error.";
             }
         }
-
         getJobDetails();
     </script>
 </body>
