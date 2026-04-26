@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Khazana Jobs | National Identity</title>
+    <title>Khazana Jobs | Compact Elite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
     
@@ -13,7 +13,7 @@
             src: url('https://font.paksign.com/fonts/Jameel-Noori-Nastaleeq.ttf') format('truetype');
         }
 
-        :root { --midnight: #000814; --gold-glow: #00D2FF; }
+        :root { --midnight: #000814; --cyan: #00D2FF; }
         
         body, html { 
             margin: 0; padding: 0; height: 100%; overflow: hidden; 
@@ -24,11 +24,10 @@
 
         .nastaleeq { 
             font-family: 'Jameel Noori Nastaleeq', serif; 
-            line-height: 1.7;
+            line-height: 1.6;
             direction: rtl;
         }
 
-        /* Main Screen - Elite Minimalist */
         .main-canvas {
             height: 100vh; display: flex; flex-direction: column; justify-content: space-between;
             padding: env(safe-area-inset-top) 30px env(safe-area-inset-bottom) 30px;
@@ -39,71 +38,70 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            height: 100px;
+            height: 90px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 11px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 0.4em; transition: 0.4s;
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.3em; transition: 0.4s;
         }
         .btn-eng:active { background: rgba(0, 210, 255, 0.1); transform: scale(0.96); }
 
-        /* The Mature Pop-up */
+        /* The Compact Mature Pop-up */
         #visionModal {
             position: fixed; inset: 0; background: rgba(0, 5, 15, 0.96);
-            backdrop-filter: blur(25px); z-index: 1000;
+            backdrop-filter: blur(20px); z-index: 1000;
             display: flex; align-items: center; justify-content: center;
+            padding: 20px;
         }
         
         .modal-box {
-            width: 92%; max-width: 420px; 
+            width: 100%; max-width: 380px; 
+            max-height: 85vh; overflow-y: auto;
             background: linear-gradient(135deg, #001a33 0%, #000814 100%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50px; padding: 45px 35px; text-align: center;
-            position: relative; overflow: hidden;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
-        }
-
-        .modal-box::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(0, 210, 255, 0.05) 0%, transparent 50%);
-            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px; padding: 35px 25px; text-align: center;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
         }
 
         .share-pill {
             background: linear-gradient(90deg, #128C7E 0%, #25D366 100%);
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.2);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.2);
         }
+
+        /* Custom Scrollbar for Compact Box */
+        .modal-box::-webkit-scrollbar { width: 0px; }
     </style>
 </head>
 <body>
 
     <div id="visionModal">
-        <div class="modal-box space-y-6">
+        <div class="modal-box space-y-5">
             
             <div class="space-y-1">
-                <span class="text-xs font-black tracking-[0.5em] text-cyan-500 uppercase">National Infrastructure</span>
-                <h3 class="nastaleeq text-4xl text-white pt-2">ایک قومی فریضہ، ایک روشن عزم</h3>
+                <span class="text-[9px] font-black tracking-[0.4em] text-cyan-500 uppercase">National Infrastructure</span>
+                <h3 class="nastaleeq text-3xl text-white pt-1">ایک قومی فریضہ، ایک روشن عزم</h3>
             </div>
             
             <div class="space-y-4 px-1 text-right">
-                <p class="nastaleeq text-xl text-white/90 leading-relaxed">
+                <p class="nastaleeq text-lg text-white/90 leading-snug">
                     خیبر پختونخوا کی غیرت مند مٹی سے ابھرنے والا یہ نظام، پاکستان کے ہر باصلاحیت نوجوان کے نام ایک تحفہ ہے۔ ہمارا مشن سرحدوں اور لسانیت سے بالاتر ہو کر ایک ایسی معاشی ریاست کی بنیاد رکھنا ہے جہاں کوئی بھی ہاتھ روزگار سے خالی نہ رہے۔
                 </p>
-                <p class="nastaleeq text-lg text-white/60">
-                    یہ ادارہ خالصتاً انسانی ہمدردی کی بنیاد پر قائم کیا گیا ہے، جس کا واحد مقصد ملکی ترقی اور بے روزگاری کا مکمل خاتمہ ہے۔ یہ خدمت تمام پاکستانیوں کے لیے تھی، ہے اور ہمیشہ **بالکل مفت** رہے گی۔
+                <p class="nastaleeq text-base text-white/60">
+                    یہ ادارہ خالصتاً انسانی ہمدردی کی بنیاد پر قائم کیا گیا ہے، جس کا واحد مقصد ملکی ترقی اور بے روزگاری کا مکمل خاتمہ ہے۔ یہ خدمت ہمیشہ **بالکل مفت** رہے گی۔
                 </p>
             </div>
 
-            <div class="pt-6 space-y-5">
-                <div class="h-[1px] w-full bg-white/5"></div>
-                <p class="nastaleeq text-lg text-cyan-400">اس کارِ خیر کو عام کرنے میں ہمارا ساتھ دیں</p>
+            <div class="pt-4 space-y-4">
+                <div class="h-[1px] w-16 bg-cyan-500/30 mx-auto"></div>
+                <p class="nastaleeq text-base text-cyan-400">اس کارِ خیر کو عام کرنے میں ہمارا ساتھ دیں</p>
                 
                 <button onclick="window.open('whatsapp://send?text=Pakistan ke har naujawan ke liye aik behtareen tohfa. Khazana Jobs - Bilkul Muft!')" 
-                    class="share-pill w-full py-5 rounded-3xl font-black text-[10px] text-white uppercase tracking-[0.3em] active:scale-95 transition-all">
+                    class="share-pill w-full py-4 rounded-2xl font-black text-[9px] text-white uppercase tracking-[0.2em] active:scale-95 transition-all">
                     Spread the Mission
                 </button>
                 
-                <button onclick="document.getElementById('visionModal').style.opacity='0'; setTimeout(()=>document.getElementById('visionModal').style.display='none', 600)" 
-                    class="w-full py-2 text-[9px] font-bold text-white/20 uppercase tracking-[0.5em] hover:text-white/50">
+                <button onclick="document.getElementById('visionModal').style.opacity='0'; setTimeout(()=>document.getElementById('visionModal').style.display='none', 500)" 
+                    class="w-full py-1 text-[8px] font-bold text-white/20 uppercase tracking-[0.4em] hover:text-white/50">
                     Proceed to Platform
                 </button>
             </div>
@@ -112,25 +110,25 @@
 
     <div class="main-canvas">
         
-        <header class="pt-12 flex flex-col items-center">
-            <h1 class="text-2xl font-[900] italic tracking-tighter text-white">KHAZANA <span class="text-cyan-500">JOBS</span></h1>
-            <div class="flex items-center gap-2 mt-2 opacity-30">
+        <header class="pt-10 flex flex-col items-center">
+            <h1 class="text-xl font-[900] italic tracking-tighter text-white">KHAZANA <span class="text-cyan-500">JOBS</span></h1>
+            <div class="flex items-center gap-2 mt-1 opacity-30">
                 <div class="w-1 h-1 bg-cyan-500 rounded-full"></div>
-                <p class="text-[7px] font-bold text-white tracking-[0.8em] uppercase">Pakistan First</p>
+                <p class="text-[6px] font-bold text-white tracking-[0.8em] uppercase">Pakistan First</p>
             </div>
         </header>
 
         <div class="text-center">
-            <p class="text-[10px] font-bold text-cyan-500/50 uppercase tracking-[0.4em] mb-4">Ecosystem of Opportunities</p>
-            <h2 class="text-6xl font-black tracking-tighter text-white/90 leading-[0.85]">DRIVING<br>FUTURE.</h2>
-            <div class="w-16 h-[2px] bg-cyan-500/30 mx-auto mt-10"></div>
+            <p class="text-[9px] font-bold text-cyan-500/50 uppercase tracking-[0.4em] mb-2">Ecosystem of Opportunities</p>
+            <h2 class="text-5xl font-black tracking-tighter text-white/90 leading-[0.85]">DRIVING<br>FUTURE.</h2>
+            <div class="w-12 h-[1px] bg-cyan-500/30 mx-auto mt-8"></div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 pb-14">
+        <div class="grid grid-cols-2 gap-4 pb-12">
             <button class="btn-eng border-cyan-500/10 text-cyan-400">Find Job</button>
             <button class="btn-eng">Post Job</button>
-            <button class="btn-eng opacity-30 !h-14">About Us</button>
-            <button class="btn-eng opacity-30 !h-14">Contact</button>
+            <button class="btn-eng opacity-30 !h-12">About Us</button>
+            <button class="btn-eng opacity-30 !h-12">Contact</button>
         </div>
 
     </div>
