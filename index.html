@@ -3,115 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Khazana Jobs | Pro</title>
+    <title>Khazana Jobs | Professional Blue</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;800&family=Noto+Sans+Arabic:wght@100;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;300;600&family=Inter:wght@400;800&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #10b981; }
+        :root { --cobalt: #002B5B; --electric: #2B6777; --cyan: #52AB98; }
         body, html { 
             margin: 0; padding: 0; height: 100%; overflow: hidden; 
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #000000;
+            font-family: 'Inter', 'IBM Plex Sans Arabic', sans-serif;
+            background: #001220; /* Deep Midnight Blue */
         }
         .app-canvas {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: env(safe-area-inset-top) 30px env(safe-area-inset-bottom) 30px;
-            background: radial-gradient(circle at 50% 0%, #061a11 0%, #000000 100%);
-            position: relative;
+            padding: env(safe-area-inset-top) 28px env(safe-area-inset-bottom) 28px;
+            background: 
+                radial-gradient(circle at 100% 0%, #002B5B 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, #001220 0%, transparent 50%);
         }
-        /* Ultra-Modern Urdu - Very Thin & Sharp */
-        .urdu-slim { font-family: 'Noto Sans Arabic', sans-serif; font-weight: 100; letter-spacing: -0.02em; }
-        .urdu-bold { font-family: 'Noto Sans Arabic', sans-serif; font-weight: 700; }
+        /* Elite Urdu - Ultra Thin & Professional */
+        .urdu-director { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 100; line-height: 1.6; letter-spacing: 0; }
+        .urdu-heading { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 600; line-height: 1.2; }
 
-        /* The 4 Buttons - Total Clean Look */
-        .grid-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
+        .glass-action {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            height: 120px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 110px;
-            transition: all 0.4s cubic-bezier(0.15, 1, 0.3, 1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .grid-btn:active {
-            background: rgba(16, 185, 129, 0.1);
-            border-color: var(--accent);
-            transform: scale(0.95);
+        .glass-action:active {
+            background: rgba(82, 171, 152, 0.2);
+            border-color: #52AB98;
+            transform: scale(0.94);
         }
-        .btn-label {
-            font-size: 10px;
+        .eng-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: white;
-            margin-bottom: 4px;
-        }
-
-        /* Ambient Glow */
-        .aura {
-            position: absolute; width: 150px; height: 150px;
-            background: var(--accent); filter: blur(100px);
-            opacity: 0.15; z-index: 0;
+            letter-spacing: 0.25em;
+            color: #C8D8E4;
         }
     </style>
 </head>
 <body>
 
-    <div class="aura" style="top: 20%; left: 10%;"></div>
-
-    <div class="app-canvas py-12">
+    <div class="app-canvas py-14">
         
-        <header class="z-10 flex flex-col items-center">
-            <h1 class="text-2xl font-[800] italic tracking-tighter text-white">
-                KHAZANA <span class="text-emerald-500">JOBS</span>
+        <header class="flex justify-between items-center z-10">
+            <h1 class="text-xl font-[800] tracking-tighter text-white">
+                KHAZANA <span class="text-[#52AB98]">JOBS</span>
             </h1>
-            <div class="h-[1px] w-12 bg-emerald-500/30 mt-2"></div>
+            <div class="w-1.5 h-1.5 bg-[#52AB98] rounded-full shadow-[0_0_12px_#52AB98]"></div>
         </header>
 
-        <section class="z-10 text-right space-y-6">
-            <h2 class="urdu-bold text-5xl text-white leading-tight">
-                رزقِ حلال، <br> <span class="text-emerald-500">آپ کی دہلیز پر۔</span>
-            </h2>
+        <section class="z-10 text-right space-y-8">
             <div class="space-y-4">
-                <p class="urdu-slim text-lg text-white/50 leading-relaxed">
-                    یہ کوئی عام ادارہ نہیں، بلکہ آپ کی خودداری کا محافظ ہے۔ ہمارا مقصد صرف نوکری نہیں، آپ کی زندگی میں معاشی سکون لانا ہے۔
+                <h2 class="urdu-heading text-4xl md:text-5xl text-white">
+                    ایک باوقار مستقبل، <br> <span class="text-[#52AB98]">بلا معاوضہ۔</span>
+                </h2>
+                <div class="h-[2px] w-16 bg-[#52AB98]/40 mr-0"></div>
+            </div>
+
+            <div class="space-y-6">
+                <p class="urdu-director text-lg text-slate-300/80">
+                    ہماری ترجیح صرف روزگار فراہم کرنا نہیں، بلکہ آپ کی پیشہ ورانہ عزتِ نفس کو محفوظ بنانا ہے۔ یہ ادارہ آپ کی صلاحیتوں کی قدر کرتا ہے، اسی لیے ہماری تمام خدمات انسانی ہمدردی کے تحت ہمیشہ کے لیے بالکل مفت رکھی گئی ہیں۔
                 </p>
-                <div class="inline-flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/10">
-                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                    <span class="urdu-slim text-[10px] text-emerald-400 uppercase tracking-widest">مفت۔ شفاف۔ ہمیشہ کے لیے۔</span>
+                <div class="flex items-center justify-end gap-3 opacity-60">
+                    <span class="urdu-director text-xs text-[#52AB98]">آپ کی کامیابی، ہمارا واحد معاوضہ ہے۔</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#52AB98"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                 </div>
             </div>
         </section>
 
-        <div class="z-10 grid grid-cols-2 gap-4 mb-4">
+        <div class="z-10 grid grid-cols-2 gap-5 mb-6">
             
-            <button class="grid-btn">
-                <span class="btn-label">Find Job</span>
-                <div class="w-1 h-1 bg-emerald-500 rounded-full mt-2"></div>
+            <button class="glass-action">
+                <img src="https://img.icons8.com/ios-filled/50/52AB98/search.png" class="w-6 h-6 mb-3 opacity-90"/>
+                <span class="eng-label">Find Job</span>
             </button>
 
-            <button class="grid-btn">
-                <span class="btn-label text-emerald-500">Post Job</span>
-                <div class="w-1 h-1 bg-white/20 rounded-full mt-2"></div>
+            <button class="glass-action">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/plus-math.png" class="w-6 h-6 mb-3 opacity-40"/>
+                <span class="eng-label">Post Job</span>
             </button>
 
-            <button class="grid-btn">
-                <span class="btn-label text-white/40">About Us</span>
+            <button class="glass-action h-24">
+                <span class="eng-label text-white/40">About Us</span>
             </button>
 
-            <button class="grid-btn">
-                <span class="btn-label text-white/40">Contact</span>
+            <button class="glass-action h-24">
+                <span class="eng-label text-white/40">Contact</span>
             </button>
 
         </div>
 
-        <footer class="z-10 text-center opacity-10">
-            <span class="text-[8px] font-bold tracking-[0.6em] uppercase text-white">Ultimate Workforce Ecosystem</span>
+        <footer class="z-10 text-center">
+            <span class="text-[9px] font-bold tracking-[0.6em] uppercase text-white/10 italic">Secure Professional Network • 2026</span>
         </footer>
 
     </div>
