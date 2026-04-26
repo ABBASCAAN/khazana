@@ -3,142 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khazana.pro | Empowering Pakistan</title>
+    <title>Khazana.pro | Global Digital Sovereignty</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --sky: #38bdf8; --gold: #fbbf24; --purple: #a855f7; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #020617; color: #f8fafc; overflow-x: hidden; min-height: 100vh; }
-        .aura { position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.1; pointer-events: none; }
-        .aura-1 { background: var(--sky); top: -10%; left: -5%; }
-        .aura-2 { background: var(--gold); bottom: -10%; right: -5%; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .feature-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .feature-card:hover { transform: translateY(-10px); border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.04); }
-        .hero-gradient { background: linear-gradient(to bottom, #ffffff 40%, rgba(255,255,255,0.4) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        @media (max-width: 768px) { .aura { width: 300px; height: 300px; } }
+        :root { --sky: #38bdf8; --indigo: #6366f1; --slate: #94a3b8; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+        
+        /* Premium Background Visuals */
+        .grid-bg { 
+            position: fixed; inset: 0; 
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px; z-index: -1;
+        }
+        .glow {
+            position: fixed; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.15), transparent 70%);
+            z-index: -1; pointer-events: none;
+        }
+
+        /* Enterprise Animations */
+        @keyframes reveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { animation: reveal 1s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        /* Mobile-First Refined Cards */
+        .enterprise-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.5s border-radius;
+            position: relative; overflow: hidden;
+        }
+        .enterprise-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(255,255,255,0.04);
+        }
+        .enterprise-card::after {
+            content: ""; position: absolute; inset: 0;
+            background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 50%);
+            opacity: 0; transition: opacity 0.5s;
+        }
+        .enterprise-card:hover::after { opacity: 1; }
+
+        .hero-text {
+            background: linear-gradient(to bottom, #fff 50%, #64748b 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Mobile Bottom Nav Fix */
+        @media (max-width: 640px) {
+            .hero-title { font-size: 3.5rem !important; line-height: 1 !important; }
+            .card-grid { grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
 <body>
-    <div class="aura aura-1"></div>
-    <div class="aura aura-2"></div>
+    <div class="grid-bg"></div>
+    <div class="glow"></div>
 
-    <nav class="flex justify-between items-center p-6 md:p-8 max-w-7xl mx-auto relative z-10">
-        <div class="text-xl md:text-2xl font-black italic tracking-tighter">KHAZANA<span class="text-sky-400">.PRO</span></div>
-        <div class="hidden lg:flex space-x-12 text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
-            <a href="#" class="hover:text-sky-400 transition">Ecosystem</a>
-            <a href="#" class="hover:text-sky-400 transition">Roadmap</a>
-            <a href="#" class="hover:text-sky-400 transition">Contact</a>
+    <nav class="flex justify-between items-center px-6 py-6 md:px-12 md:py-8 max-w-screen-2xl mx-auto sticky top-0 z-50 backdrop-blur-md">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center font-black italic text-black">K</div>
+            <div class="text-xl font-bold tracking-tighter uppercase">Khazana<span class="text-sky-400">.Pro</span></div>
         </div>
-        <button onclick="toggleModal()" class="glass px-6 md:px-10 py-3 rounded-full font-black text-[10px] md:text-[11px] tracking-widest hover:bg-sky-500 transition-all duration-500">
-            CLAIM ACCESS
+        <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">
+            <a href="#" class="hover:text-white transition">Ecosystem</a>
+            <a href="#" class="hover:text-white transition">Governance</a>
+            <a href="#" class="hover:text-white transition">Intelligence</a>
+        </div>
+        <button onclick="toggleModal()" class="bg-white text-black px-6 py-2.5 rounded-full text-[10px] font-extrabold tracking-widest hover:bg-sky-400 transition-transform active:scale-95">
+            GET STARTED
         </button>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 md:px-8 pt-16 md:pt-24 pb-20 text-center">
-        <div class="inline-block glass px-5 py-2 rounded-full text-[8px] md:text-[9px] font-black tracking-[0.3em] md:tracking-[0.4em] text-sky-400 mb-8 md:mb-10 uppercase border-sky-500/20">
-            Pakistan's Digital Revolution
+    <main class="max-w-6xl mx-auto px-6 pt-12 md:pt-28 pb-24">
+        <div class="reveal inline-flex items-center space-x-2 border border-sky-500/30 bg-sky-500/5 px-4 py-1.5 rounded-full mb-8">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+            </span>
+            <span class="text-[9px] font-black uppercase tracking-[0.3em] text-sky-400">Global Infrastructure Active</span>
         </div>
-        <h1 class="text-4xl md:text-7xl lg:text-[100px] font-extrabold leading-[1.1] md:leading-[0.9] tracking-tighter hero-gradient mb-8 md:mb-10">
-            BUILD YOUR <br class="hidden md:block"/> DIGITAL EMPIRE.
+
+        <h1 class="hero-title reveal delay-1 text-5xl md:text-8xl lg:text-[110px] font-extrabold tracking-tight hero-text mb-8">
+            THE FUTURE OF <br class="hidden md:block"/> DIGITAL CAPITAL.
         </h1>
-        <p class="text-slate-400 text-base md:text-xl max-w-2xl mx-auto mb-12 md:mb-20 font-light leading-relaxed">
-            Don't just look for jobs—create your own destiny. Khazana.pro is the ultimate platform for Pakistani youth to master high-value skills and achieve real financial freedom.
-        </p>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 text-left">
-            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem]">
-                <div class="text-sky-400 font-black text-3xl mb-4">01</div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Elite Skill Vault</h3>
-                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Learn high-income skills like AI Prompting and Sales Hacking from the industry's best.</p>
+        <p class="reveal delay-2 text-slate-400 text-lg md:text-xl max-w-3xl mb-16 font-light leading-relaxed">
+            Khazana.pro is a decentralized ecosystem engineered for high-performance individuals. We provide the infrastructure, intelligence, and elite networking required to dominate the global digital economy.
+        </p>
+
+        <div class="grid card-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="enterprise-card p-8 rounded-3xl">
+                <div class="text-sky-400 text-xs font-bold mb-4 tracking-widest uppercase">Intelligence</div>
+                <h3 class="text-lg font-bold mb-2 uppercase">Skill Acquisition</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">Access proprietary frameworks in Generative AI, Strategic Sales, and High-Ticket Negotiation.</p>
             </div>
-            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-amber-500/10">
-                <div class="text-amber-400 font-black text-3xl mb-4">02</div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Wealth Assets</h3>
-                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Turn your knowledge into profit. Launch digital businesses designed for the global market.</p>
+            <div class="enterprise-card p-8 rounded-3xl">
+                <div class="text-indigo-400 text-xs font-bold mb-4 tracking-widest uppercase">Infrastructure</div>
+                <h3 class="text-lg font-bold mb-2 uppercase">Digital Assets</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">Scalable business models designed for cross-border revenue and automated performance.</p>
             </div>
-            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-purple-500/10">
-                <div class="text-purple-400 font-black text-3xl mb-4">03</div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Pro Dashboard</h3>
-                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Monitor your growth, earnings, and roadmap through our real-time SQL-connected tracking system.</p>
+            <div class="enterprise-card p-8 rounded-3xl">
+                <div class="text-emerald-400 text-xs font-bold mb-4 tracking-widest uppercase">Analytics</div>
+                <h3 class="text-lg font-bold mb-2 uppercase">Pro Terminal</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">Real-time data visualization of your growth trajectory and financial milestones.</p>
             </div>
-            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-emerald-500/10">
-                <div class="text-emerald-400 font-black text-3xl mb-4">04</div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Global Networking</h3>
-                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Connect with a community of elite Pakistani digital entrepreneurs and collaborators.</p>
+            <div class="enterprise-card p-8 rounded-3xl">
+                <div class="text-amber-400 text-xs font-bold mb-4 tracking-widest uppercase">Network</div>
+                <h3 class="text-lg font-bold mb-2 uppercase">Elite Circle</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">Connect with verified high-performers and industry leaders across the globe.</p>
             </div>
-            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-rose-500/10">
-                <div class="text-rose-400 font-black text-3xl mb-4">05</div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Private Mentorship</h3>
-                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Get direct guidance from Abbas Khan to navigate the complex world of high-ticket sales.</p>
+            <div class="enterprise-card p-8 rounded-3xl">
+                <div class="text-rose-400 text-xs font-bold mb-4 tracking-widest uppercase">Strategy</div>
+                <h3 class="text-lg font-bold mb-2 uppercase">Growth Roadmap</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">Precision-engineered career paths tailored for maximum market impact and authority.</p>
             </div>
-            <div class="feature-card glass p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-indigo-500/10">
-                <div class="text-indigo-400 font-black text-3xl mb-4">06</div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Financial Freedom</h3>
-                <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-medium uppercase tracking-wider">Achieve the life you deserve. Scale your digital assets and break free from the 9-to-5 cycle.</p>
+            <div class="enterprise-card p-8 rounded-3xl">
+                <div class="text-purple-400 text-xs font-bold mb-4 tracking-widest uppercase">Authority</div>
+                <h3 class="text-lg font-bold mb-2 uppercase">Market Mastery</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">Position yourself as a top-tier asset in international high-value markets.</p>
+            </div>
+            <div class="enterprise-card p-8 rounded-3xl">
+                <div class="text-sky-400 text-xs font-bold mb-4 tracking-widest uppercase">Security</div>
+                <h3 class="text-lg font-bold mb-2 uppercase">Asset Protection</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">Advanced systems to secure your digital intellectual property and revenue streams.</p>
+            </div>
+            <div class="enterprise-card p-8 rounded-3xl">
+                <div class="text-slate-400 text-xs font-bold mb-4 tracking-widest uppercase">Freedom</div>
+                <h3 class="text-lg font-bold mb-2 uppercase">Sovereignty</h3>
+                <p class="text-slate-500 text-xs leading-relaxed">Full control over your financial destiny and professional independence.</p>
             </div>
         </div>
     </main>
 
-    <footer class="border-t border-white/5 bg-black/20 pt-16 md:pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div class="col-span-1 md:col-span-2">
-                <div class="text-2xl font-black italic tracking-tighter mb-6">KHAZANA<span class="text-sky-400">.PRO</span></div>
-                <p class="text-slate-500 text-sm max-w-sm leading-relaxed mb-8">
-                    Pakistan's elite digital ecosystem dedicated to empowering youth with high-income skills and financial sovereignty. Founded by Abbas Khan.
-                </p>
-                <div class="flex space-x-6 opacity-40 text-[10px] font-bold uppercase tracking-widest">
-                    <a href="#" class="hover:text-sky-400 transition">Facebook</a>
-                    <a href="#" class="hover:text-sky-400 transition">LinkedIn</a>
-                    <a href="#" class="hover:text-sky-400 transition">Youtube</a>
+    <footer class="border-t border-white/5 pt-20 pb-12 bg-[#050505]">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+            <div>
+                <div class="text-xl font-bold tracking-tighter mb-6 uppercase">Khazana<span class="text-sky-400">.Pro</span></div>
+                <p class="text-slate-500 text-xs leading-relaxed uppercase tracking-widest">Global Digital Infrastructure for the New Economy.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-8 col-span-2">
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-white mb-6">Network</h4>
+                    <ul class="text-slate-500 text-[10px] uppercase font-bold space-y-4 tracking-widest">
+                        <li><a href="#" class="hover:text-sky-400 transition">Intelligence Vault</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Global Access</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Terminal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-white mb-6">Protocol</h4>
+                    <ul class="text-slate-500 text-[10px] uppercase font-bold space-y-4 tracking-widest">
+                        <li><a href="#" class="hover:text-sky-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Compliance</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Security</a></li>
+                    </ul>
                 </div>
             </div>
-            <div>
-                <h4 class="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">Company</h4>
-                <ul class="text-slate-500 text-sm space-y-4">
-                    <li><a href="#" class="hover:text-white transition">About Us</a></li>
-                    <li><a href="#" class="hover:text-white transition">Success Stories</a></li>
-                    <li><a href="#" class="hover:text-white transition">Partner Program</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">Legal</h4>
-                <ul class="text-slate-500 text-sm space-y-4">
-                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-white transition">Refund Policy</a></li>
-                </ul>
-            </div>
         </div>
-        <div class="max-w-7xl mx-auto px-8 pt-10 border-t border-white/5 text-center text-[10px] font-bold text-slate-600 uppercase tracking-widest">
-            © 2026 KHAZANA.PRO. ALL RIGHTS RESERVED. ARCHITECTED BY ABBAS KHAN.
+        <div class="text-center text-[8px] font-bold text-slate-700 uppercase tracking-[0.5em]">
+            © 2026 KHAZANA PROTOCOL. ALL SYSTEMS OPERATIONAL.
         </div>
     </footer>
 
-    <div id="auth-modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-2xl flex items-center justify-center z-50 p-6">
-        <div class="glass p-8 md:p-12 rounded-[3rem] md:rounded-[4rem] w-full max-w-md border-sky-500/20 text-center relative">
-            <h2 id="modal-title" class="text-3xl md:text-4xl font-black mb-2 italic uppercase text-white">JOIN<span class="text-sky-500">.</span></h2>
-            <p id="modal-desc" class="text-slate-500 mb-8 text-[10px] md:text-xs uppercase tracking-widest font-bold">Start Your Journey</p>
+    <div id="auth-modal" class="hidden fixed inset-0 bg-black/95 backdrop-blur-3xl flex items-center justify-center z-50 p-4">
+        <div class="bg-[#0a0a0a] border border-white/10 p-8 md:p-12 rounded-[2rem] w-full max-w-sm text-center">
+            <h2 id="modal-title" class="text-3xl font-black mb-2 tracking-tighter uppercase">Establish Connection</h2>
+            <p id="modal-desc" class="text-slate-500 mb-8 text-[9px] uppercase tracking-[0.3em] font-bold">Secure Authentication Protocol</p>
             
-            <input type="email" id="email" placeholder="Email" class="w-full p-4 md:p-5 bg-white/5 border border-white/10 rounded-2xl mb-4 focus:border-sky-500 outline-none text-white transition-all">
-            <input type="password" id="password" placeholder="Password" class="w-full p-4 md:p-5 bg-white/5 border border-white/10 rounded-2xl mb-8 focus:border-sky-500 outline-none text-white transition-all">
+            <input type="email" id="email" placeholder="ACCESS KEY (EMAIL)" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl mb-4 focus:border-sky-500 outline-none text-[10px] font-bold uppercase tracking-widest text-white">
+            <input type="password" id="password" placeholder="SECRET (PASSWORD)" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl mb-8 focus:border-sky-500 outline-none text-[10px] font-bold uppercase tracking-widest text-white">
             
-            <button onclick="handleAuth()" id="auth-btn" class="w-full bg-sky-500 py-4 md:py-5 rounded-2xl font-black text-xs md:text-sm tracking-[0.2em] hover:bg-sky-400 transition-all uppercase shadow-lg shadow-sky-500/20">
-                Create Account
+            <button onclick="handleAuth()" id="auth-btn" class="w-full bg-white text-black py-4 rounded-xl font-black text-[10px] tracking-[0.3em] hover:bg-sky-400 transition-all uppercase">
+                Initialize Account
             </button>
             
-            <p class="mt-6 text-[9px] md:text-[10px] font-bold tracking-widest text-slate-500 uppercase">
-                <span id="toggle-text">Already a member?</span> 
-                <button onclick="toggleAuthMode()" id="toggle-link" class="text-sky-400 hover:text-white ml-1">Login Here</button>
-            </p>
-
-            <button onclick="toggleModal()" class="mt-6 text-slate-600 text-[10px] font-bold tracking-widest uppercase hover:text-white">Close Window</button>
+            <div class="mt-8 pt-8 border-t border-white/5">
+                <p class="text-[8px] font-bold tracking-[0.2em] text-slate-600 uppercase">
+                    <span id="toggle-text">System ID not found?</span> 
+                    <button onclick="toggleAuthMode()" id="toggle-link" class="text-sky-400 hover:text-white ml-2">Request Access</button>
+                </p>
+                <button onclick="toggleModal()" class="mt-6 text-slate-700 text-[8px] font-black uppercase tracking-[0.4em] hover:text-white">Abort</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // --- YOUR ORIGINAL LOGIC & KEYS (SAFE & UNCHANGED) ---
+        // --- SUPABASE CONFIG (STAYS THE SAME) ---
         const sUrl = 'https://joeraoythobkbljnxfmf.supabase.co';
         const sKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpvZXJhb3l0aG9ia2Jsam54Zm1mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTIwMTMsImV4cCI6MjA5MjYyODAxM30.X7hleoi4hBXDGEpWOhTea5nzWwUGxeYLzxxbIEfyqMA';
         const _supabase = supabase.createClient(sUrl, sKey);
@@ -156,17 +210,17 @@
             const toggleLink = document.getElementById('toggle-link');
 
             if (isLoginMode) {
-                title.innerHTML = 'WELCOME<span class="text-sky-500">.</span>';
-                desc.innerText = 'Login to your dashboard';
-                btn.innerText = 'Login Now';
-                toggleText.innerText = "Don't have an account?";
-                toggleLink.innerText = 'Sign Up';
+                title.innerText = 'System Login';
+                desc.innerText = 'Identity Verification Required';
+                btn.innerText = 'Authorize';
+                toggleText.innerText = "No credentials?";
+                toggleLink.innerText = 'Request Access';
             } else {
-                title.innerHTML = 'JOIN<span class="text-sky-500">.</span>';
-                desc.innerText = 'Start Your Journey';
-                btn.innerText = 'Create Account';
-                toggleText.innerText = "Already a member?";
-                toggleLink.innerText = 'Login Here';
+                title.innerText = 'Establish Connection';
+                desc.innerText = 'Secure Authentication Protocol';
+                btn.innerText = 'Initialize Account';
+                toggleText.innerText = "System ID found?";
+                toggleLink.innerText = 'Connect Now';
             }
         }
 
@@ -175,32 +229,21 @@
             const password = document.getElementById('password').value;
             const btn = document.getElementById('auth-btn');
 
-            if(!email || !password) return alert("Jan, fields khali na chorrein!");
+            if(!email || !password) return alert("All protocols require full credentials.");
 
             btn.disabled = true;
-            btn.innerText = "Processing...";
+            btn.innerText = "VERIFYING...";
 
-            let result;
-            if (isLoginMode) {
-                result = await _supabase.auth.signInWithPassword({ email, password });
-            } else {
-                result = await _supabase.auth.signUp({ email, password });
-            }
+            let result = isLoginMode 
+                ? await _supabase.auth.signInWithPassword({ email, password })
+                : await _supabase.auth.signUp({ email, password });
 
-            const { data, error } = result;
-
-            if (error) {
-                alert(error.message);
+            if (result.error) {
+                alert("Protocol Error: " + result.error.message);
                 btn.disabled = false;
-                btn.innerText = isLoginMode ? "Login Now" : "Create Account";
+                btn.innerText = isLoginMode ? "Authorize" : "Initialize Account";
             } else {
-                if(!isLoginMode && data.user && data.user.identities && data.user.identities.length === 0) {
-                    alert("Email already exists! Please login.");
-                    btn.disabled = false;
-                    btn.innerText = "Login Mode";
-                } else {
-                    window.location.href = 'dashboard.html';
-                }
+                window.location.href = 'dashboard.html';
             }
         }
     </script>
