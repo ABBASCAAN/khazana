@@ -3,112 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Khazana Jobs | Official</title>
+    <title>Khazana Jobs | National Identity</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
     
     <style>
-        /* Loading Jameel Noori Nastaleeq from a reliable web source */
         @font-face {
             font-family: 'Jameel Noori Nastaleeq';
             src: url('https://font.paksign.com/fonts/Jameel-Noori-Nastaleeq.ttf') format('truetype');
         }
 
-        :root { --deep-blue: #000B18; --accent-blue: #00D2FF; }
+        :root { --midnight: #000814; --gold-glow: #00D2FF; }
         
         body, html { 
             margin: 0; padding: 0; height: 100%; overflow: hidden; 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--deep-blue);
+            background: var(--midnight);
             color: white;
         }
 
-        .urdu-nastaleeq { 
-            font-family: 'Jameel Noori Nastaleeq', 'serif'; 
-            line-height: 1.8;
+        .nastaleeq { 
+            font-family: 'Jameel Noori Nastaleeq', serif; 
+            line-height: 1.7;
             direction: rtl;
         }
 
+        /* Main Screen - Elite Minimalist */
         .main-canvas {
             height: 100vh; display: flex; flex-direction: column; justify-content: space-between;
             padding: env(safe-area-inset-top) 30px env(safe-area-inset-bottom) 30px;
-            background: radial-gradient(circle at 50% 0%, #001E3C 0%, #000B18 100%);
+            background: radial-gradient(circle at 50% 0%, #001E3C 0%, #000814 100%);
         }
 
-        /* Pro Minimal Buttons */
-        .btn-minimal {
+        .btn-eng {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            height: 110px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.35em;
-            transition: all 0.5s ease;
-        }
-        .btn-minimal:active { transform: scale(0.94); background: rgba(0, 210, 255, 0.1); border-color: var(--accent-blue); }
-
-        /* The Imperial Pop-up */
-        #welcomeModal {
-            position: fixed; inset: 0; background: rgba(0, 8, 20, 0.92);
-            backdrop-filter: blur(20px); z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            height: 100px;
             display: flex; align-items: center; justify-content: center;
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 11px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.4em; transition: 0.4s;
+        }
+        .btn-eng:active { background: rgba(0, 210, 255, 0.1); transform: scale(0.96); }
+
+        /* The Mature Pop-up */
+        #visionModal {
+            position: fixed; inset: 0; background: rgba(0, 5, 15, 0.96);
+            backdrop-filter: blur(25px); z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
         }
         
-        .modal-content {
-            width: 90%; max-width: 380px; 
-            background: linear-gradient(160deg, #002347 0%, #000B18 100%);
-            border: 1px solid rgba(0, 210, 255, 0.2);
-            border-radius: 45px; padding: 45px 30px; text-align: center;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
-            position: relative;
+        .modal-box {
+            width: 92%; max-width: 420px; 
+            background: linear-gradient(135deg, #001a33 0%, #000814 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px; padding: 45px 35px; text-align: center;
+            position: relative; overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
         }
 
-        .share-btn {
-            background: linear-gradient(135deg, #25D366 0%, #075E54 100%);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.25);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        .modal-box::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        .aura-glow {
-            position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
-            width: 200px; height: 200px; background: var(--accent-blue);
-            filter: blur(100px); opacity: 0.15; z-index: -1;
+        .share-pill {
+            background: linear-gradient(90deg, #128C7E 0%, #25D366 100%);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.2);
         }
     </style>
 </head>
 <body>
 
-    <div id="welcomeModal">
-        <div class="modal-content space-y-6">
-            <div class="aura-glow"></div>
+    <div id="visionModal">
+        <div class="modal-box space-y-6">
             
-            <div class="space-y-2">
-                <span class="text-3xl">✨</span>
-                <h3 class="urdu-nastaleeq text-4xl text-white pt-2">پختون بھائیوں کا مخلصانہ تحفہ</h3>
+            <div class="space-y-1">
+                <span class="text-xs font-black tracking-[0.5em] text-cyan-500 uppercase">National Infrastructure</span>
+                <h3 class="nastaleeq text-4xl text-white pt-2">ایک قومی فریضہ، ایک روشن عزم</h3>
             </div>
             
-            <p class="urdu-nastaleeq text-xl text-white/80 leading-relaxed px-2">
-                یہ پلیٹ فارم پختون مٹی کے نوجوانوں نے خاص اپنے بھائیوں کے لیے بنایا ہے تاکہ کوئی بھی باصلاحیت ہاتھ خالی نہ رہے۔ یہ خدمت صرف پاکستان کے لیے ہے اور ہمیشہ بالکل مفت رہے گی۔
-            </p>
+            <div class="space-y-4 px-1 text-right">
+                <p class="nastaleeq text-xl text-white/90 leading-relaxed">
+                    خیبر پختونخوا کی غیرت مند مٹی سے ابھرنے والا یہ نظام، پاکستان کے ہر باصلاحیت نوجوان کے نام ایک تحفہ ہے۔ ہمارا مشن سرحدوں اور لسانیت سے بالاتر ہو کر ایک ایسی معاشی ریاست کی بنیاد رکھنا ہے جہاں کوئی بھی ہاتھ روزگار سے خالی نہ رہے۔
+                </p>
+                <p class="nastaleeq text-lg text-white/60">
+                    یہ ادارہ خالصتاً انسانی ہمدردی کی بنیاد پر قائم کیا گیا ہے، جس کا واحد مقصد ملکی ترقی اور بے روزگاری کا مکمل خاتمہ ہے۔ یہ خدمت تمام پاکستانیوں کے لیے تھی، ہے اور ہمیشہ **بالکل مفت** رہے گی۔
+                </p>
+            </div>
 
-            <div class="space-y-4 pt-6">
-                <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
-                <p class="urdu-nastaleeq text-lg text-cyan-400">اس خیر کو پھیلانے میں ہمارا ساتھ دیں</p>
+            <div class="pt-6 space-y-5">
+                <div class="h-[1px] w-full bg-white/5"></div>
+                <p class="nastaleeq text-lg text-cyan-400">اس کارِ خیر کو عام کرنے میں ہمارا ساتھ دیں</p>
                 
-                <button onclick="window.open('whatsapp://send?text=Pakhtun bhaiyo, ye app khas hamare liye hai. Ise share karo taake koi be-rozgar na rahe!')" 
-                    class="share-btn w-full py-5 rounded-3xl font-black text-[10px] text-white uppercase tracking-[0.3em] active:scale-95 transition-all">
-                    Share on WhatsApp
+                <button onclick="window.open('whatsapp://send?text=Pakistan ke har naujawan ke liye aik behtareen tohfa. Khazana Jobs - Bilkul Muft!')" 
+                    class="share-pill w-full py-5 rounded-3xl font-black text-[10px] text-white uppercase tracking-[0.3em] active:scale-95 transition-all">
+                    Spread the Mission
                 </button>
                 
-                <button onclick="document.getElementById('welcomeModal').style.opacity='0'; setTimeout(()=>document.getElementById('welcomeModal').style.display='none', 600)" 
-                    class="w-full py-2 text-[9px] font-bold text-white/20 uppercase tracking-widest hover:text-white/50 transition-all">
-                    Enter Khazana
+                <button onclick="document.getElementById('visionModal').style.opacity='0'; setTimeout(()=>document.getElementById('visionModal').style.display='none', 600)" 
+                    class="w-full py-2 text-[9px] font-bold text-white/20 uppercase tracking-[0.5em] hover:text-white/50">
+                    Proceed to Platform
                 </button>
             </div>
         </div>
@@ -118,23 +114,23 @@
         
         <header class="pt-12 flex flex-col items-center">
             <h1 class="text-2xl font-[900] italic tracking-tighter text-white">KHAZANA <span class="text-cyan-500">JOBS</span></h1>
-            <div class="flex items-center gap-2 mt-2">
-                <div class="w-1 h-1 bg-cyan-500 rounded-full animate-pulse"></div>
-                <p class="text-[8px] font-bold text-white/30 tracking-[0.6em] uppercase">Elite Infrastructure</p>
+            <div class="flex items-center gap-2 mt-2 opacity-30">
+                <div class="w-1 h-1 bg-cyan-500 rounded-full"></div>
+                <p class="text-[7px] font-bold text-white tracking-[0.8em] uppercase">Pakistan First</p>
             </div>
         </header>
 
-        <div class="flex flex-col items-center">
-            <div class="w-32 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent mb-10"></div>
-            <h2 class="text-5xl font-black tracking-tighter text-white/90 leading-[0.9]">PURE.<br>FREE.<br><span class="text-cyan-500">PRO.</span></h2>
-            <div class="w-32 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent mt-10"></div>
+        <div class="text-center">
+            <p class="text-[10px] font-bold text-cyan-500/50 uppercase tracking-[0.4em] mb-4">Ecosystem of Opportunities</p>
+            <h2 class="text-6xl font-black tracking-tighter text-white/90 leading-[0.85]">DRIVING<br>FUTURE.</h2>
+            <div class="w-16 h-[2px] bg-cyan-500/30 mx-auto mt-10"></div>
         </div>
 
         <div class="grid grid-cols-2 gap-4 pb-14">
-            <button class="btn-minimal">Find Job</button>
-            <button class="btn-minimal text-cyan-400 border-cyan-500/20">Post Job</button>
-            <button class="btn-minimal opacity-30 !h-14">About</button>
-            <button class="btn-minimal opacity-30 !h-14">Contact</button>
+            <button class="btn-eng border-cyan-500/10 text-cyan-400">Find Job</button>
+            <button class="btn-eng">Post Job</button>
+            <button class="btn-eng opacity-30 !h-14">About Us</button>
+            <button class="btn-eng opacity-30 !h-14">Contact</button>
         </div>
 
     </div>
