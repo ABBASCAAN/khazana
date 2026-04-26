@@ -3,105 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Khazana Jobs | Professional Aura</title>
+    <title>Khazana Jobs | Ultimate Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;400;600&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;300;600&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
     <style>
+        :root { --emerald: #10b981; --bg: #030705; }
         body, html { 
             margin: 0; padding: 0; height: 100%; overflow: hidden; 
-            font-family: 'IBM Plex Sans Arabic', sans-serif;
-            background: #000c07; /* Ultra Dark Green-Black */
+            font-family: 'Plus Jakarta Sans', 'Noto Sans Arabic', sans-serif;
+            background: var(--bg);
+            color: white;
         }
-        .aura-container {
+        .god-container {
             height: 100vh;
             display: flex;
             flex-direction: column;
             padding: env(safe-area-inset-top) 24px env(safe-area-inset-bottom) 24px;
             background: 
-                radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 100% 100%, rgba(5, 150, 105, 0.1) 0%, transparent 40%);
+                radial-gradient(circle at 50% -20%, rgba(16, 185, 129, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at -20% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
             position: relative;
         }
-        .urdu-light { font-weight: 200; line-height: 1.6; }
-        .urdu-bold { font-weight: 600; }
-        
-        /* High Aura Cards */
-        .glass-tile {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 28px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .glass-tile:active {
-            background: rgba(255, 255, 255, 0.08);
-            transform: scale(0.95);
-            border-color: rgba(16, 185, 129, 0.4);
-        }
-        
-        .main-logo {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            letter-spacing: -0.05em;
-        }
+        /* Elegant Urdu - Minimalist & Thin */
+        .urdu-elite { font-family: 'Noto Sans Arabic', sans-serif; font-weight: 100; letter-spacing: -0.01em; line-height: 1.8; }
+        .urdu-bold { font-weight: 600; letter-spacing: -0.02em; }
 
-        .glow-effect {
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.1);
+        /* Pro English Buttons */
+        .btn-pro {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
+        .btn-pro:active { transform: scale(0.94); background: rgba(255, 255, 255, 0.05); border-color: var(--emerald); }
+        .btn-pro::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
+        }
+        .btn-pro:hover::after { left: 100%; }
+
+        .eng-label { font-size: 10px; font-weight: 800; letter-spacing: 0.25em; color: var(--emerald); text-transform: uppercase; }
+        .glow-dot { width: 4px; height: 4px; background: var(--emerald); border-radius: 50%; box-shadow: 0 0 10px var(--emerald); }
     </style>
 </head>
 <body>
 
-    <div class="aura-container justify-between py-10">
+    <div class="god-container justify-between py-12">
         
-        <header class="text-center z-10">
-            <h1 class="main-logo text-white text-3xl font-[800] uppercase italic tracking-tighter">
-                KHAZANA <span class="text-emerald-500">JOBS</span>
-            </h1>
-            <div class="mt-2 inline-block px-4 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                <span class="urdu-bold text-[10px] text-emerald-400 tracking-[0.2em]">ہمیشہ کے لیے مفت</span>
+        <header class="flex justify-between items-center z-10">
+            <div class="flex flex-col text-right">
+                <span class="urdu-bold text-xs text-emerald-500 uppercase tracking-widest leading-none">مفت سہولت</span>
+                <span class="text-[8px] text-white/20 font-bold tracking-[0.4em] uppercase">Permanent Infrastructure</span>
             </div>
+            <h1 class="text-2xl font-[800] italic tracking-tighter">KHAZANA<span class="text-emerald-500">JOBS</span></h1>
         </header>
 
-        <div class="z-10 px-2 space-y-4">
-            <h2 class="urdu-bold text-4xl text-white leading-tight text-right">
-                آپ کی محنت، <br> <span class="text-emerald-400">ہمارا فخر۔</span>
-            </h2>
-            <div class="space-y-4">
-                <p class="urdu-light text-white/50 text-base text-right">
-                    ہم جانتے ہیں کہ ایک نوکری صرف تنخواہ نہیں، بلکہ ایک گھر کا خواب اور والدین کی دعا ہوتی ہے۔ خزانہ جابز اسی خواب کو تعبیر دینے کے لیے بنایا گیا ہے۔ 
-                </p>
-                <p class="urdu-light text-white/40 text-sm text-right border-r-2 border-emerald-500/30 pr-4">
-                    مایوسی کو پیچھے چھوڑیں، کیونکہ اب پاکستان کا ہر نوجوان اپنی صلاحیت کے مطابق کام پائے گا۔ ہم آپ کے ساتھ کھڑے ہیں، قدم بہ قدم۔
+        <section class="z-10 mt-10">
+            <div class="space-y-6 text-right">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/10">
+                    <span class="urdu-elite text-[10px] text-white/60">پاکستان کا معتبر ترین نیٹ ورک</span>
+                    <div class="glow-dot"></div>
+                </div>
+                <h2 class="urdu-bold text-5xl text-white leading-[1.1] tracking-tighter">
+                    مایوسی کو بدلیں <br> <span class="text-emerald-500 italic">کامیابی میں۔</span>
+                </h2>
+                <div class="max-w-[300px] mr-auto">
+                    <p class="urdu-elite text-base text-white/40 leading-relaxed">
+                        ہم آپ کے خوابوں کی قدر کرتے ہیں۔ خزانہ جابز وہ پل ہے جو آپ کی محنت کو صحیح منزل تک پہنچاتا ہے، بغیر کسی معاوضے کے۔
+                    </p>
+                </div>
+                <p class="urdu-elite text-sm text-emerald-400/60 italic font-medium">
+                    "آپ کی عزتِ نفس ہمارا پہلا مقصد ہے۔"
                 </p>
             </div>
+        </section>
+
+        <div class="z-10 grid grid-cols-2 gap-4 mt-8">
+            <button class="btn-pro h-40 col-span-1 shadow-2xl shadow-emerald-500/5">
+                <img src="https://img.icons8.com/fluency-systems-filled/48/10b981/search.png" class="w-8 h-8 mb-2 opacity-80"/>
+                <span class="eng-label">Find a Job</span>
+                <span class="urdu-bold text-sm text-white">نوکری تلاش کریں</span>
+            </button>
+
+            <button class="btn-pro h-40 col-span-1 border-white/5">
+                <img src="https://img.icons8.com/fluency-systems-filled/48/ffffff/plus-key.png" class="w-8 h-8 mb-2 opacity-50"/>
+                <span class="eng-label text-white/50">Post a Job</span>
+                <span class="urdu-bold text-sm text-white">اشتہار لگائیں</span>
+            </button>
+
+            <button class="btn-pro h-24 col-span-1 rounded-[20px]">
+                <span class="eng-label text-white/30 !text-[8px]">About Us</span>
+                <span class="urdu-elite text-xs text-white/60">ہمارے بارے میں</span>
+            </button>
+
+            <button class="btn-pro h-24 col-span-1 rounded-[20px]">
+                <span class="eng-label text-white/30 !text-[8px]">Contact Us</span>
+                <span class="urdu-elite text-xs text-white/60">رابطہ کریں</span>
+            </button>
         </div>
 
-        <div class="z-10 grid grid-cols-2 gap-4">
-            <div class="glass-tile p-6 col-span-1 flex flex-col justify-between min-h-[140px] glow-effect">
-                <span class="text-2xl">🔍</span>
-                <span class="urdu-bold text-lg text-white text-right">نوکری تلاش کریں</span>
-            </div>
-
-            <div class="glass-tile p-6 col-span-1 flex flex-col justify-between min-h-[140px]">
-                <span class="text-2xl">💼</span>
-                <span class="urdu-bold text-lg text-white text-right">اشتہار لگائیں</span>
-            </div>
-
-            <div class="glass-tile p-5 flex items-center justify-between">
-                <span class="text-xl">📞</span>
-                <span class="urdu-bold text-sm text-white/70">رابطہ کریں</span>
-            </div>
-
-            <div class="glass-tile p-5 flex items-center justify-between">
-                <span class="text-xl">🛡️</span>
-                <span class="urdu-bold text-sm text-white/70">ہمارے بارے میں</span>
-            </div>
-        </div>
-
-        <footer class="z-10 text-center">
-            <p class="urdu-light text-[10px] text-white/20 uppercase tracking-[0.4em]">
-                پاکستانی نوجوانوں کی خدمت میں مصروف • ۲۰۲۶
-            </p>
+        <footer class="z-10 flex justify-between items-end opacity-20">
+            <span class="text-[8px] font-black uppercase tracking-[0.4em]">Auth. Network 2026</span>
+            <div class="h-[1px] flex-grow mx-4 bg-white/10 mb-1"></div>
+            <span class="text-[8px] font-black uppercase tracking-[0.4em]">v1.0.0-Gold</span>
         </footer>
 
     </div>
